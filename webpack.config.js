@@ -2,9 +2,10 @@
 var path = require('path');
 
 module.exports = {
-  entry: './frontend/questr_app.jsx',
+  entry: './frontend/questr.jsx',
   output: {
-    filename: '.app/assets/javascripts/bundle.js',
+    path: path.resolve(__dirname, 'app/assets/javascripts/'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [

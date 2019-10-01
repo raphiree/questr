@@ -21,7 +21,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,6 @@
   "bugs": {
     "url": "https://github.com/raphiree/questr/issues"
   },
-  "homepage": "https://github.com/raphiree/questr#readme"
+  "homepage": "https://github.com/raphiree/questr#readme",
+  "devDependencies": {}
 }

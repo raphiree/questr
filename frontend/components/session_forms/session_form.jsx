@@ -13,8 +13,8 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    console.log(user);
     this.props.processForm(user);
+
   };
 
   update(field) {
@@ -25,23 +25,24 @@ class SessionForm extends React.Component {
 
   render() {
 
-    const header = this.props.formType;
+    const formRender = (<form onSubmit={this.handleSubmit} id="userForm">
+      <input
+        type="text"
+        onChange={this.update('username')}
+      />
+      <input
+        type="password"
+        onChange={this.update('password')}
+      />
+      <input
+        type="submit"
+      />
+    </form>)
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        {header}
-        <input
-          type="text"
-          onChange={this.update('username')}
-          />
-        <input
-          type="password"
-          onChange={this.update('password')}
-          />
-        <input
-          type="submit"
-          />
-      </form>
+      <>
+      {formRender}
+      </>
     )
   }
 

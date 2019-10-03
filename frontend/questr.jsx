@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let store;
 
-
   if (window.currentUser) {
     let preloadedState = {
       entities: {
@@ -31,9 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // TEST CODE END
 
-  ReactDOM.render(
-    <>
-      <h1>Muwahahahaha!!!</h1>
-      <Root store={store} /> 
-    </>, root);
+  ReactDOM.render(<Root store={store} />, root);
 })

@@ -36,8 +36,8 @@ class Greeting extends React.Component {
 
           <div id="splashText">
             <div className="prompt">
-              <h1>Don't press any buttons!</h1>
-              <h2>If they break I will cry.</h2>
+              <h1>Press buttons very gently!</h1>
+              <h2>They're very delicate right now</h2>
               <Link to="/signup">
                 <button className="signup">Sign Up</button>
               </Link>

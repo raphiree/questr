@@ -14,7 +14,6 @@ const App = () => {
       <UnloggedRoute exact path="/login" component={LoginFormContainer} />
       <UnloggedRoute exact path="/signup" component={SignupFormContainer} />
       <LoggedRoute path="/photos" component={PhotoIndexContainer} />
-      <LoggedRoute path="/photos/upload" component={PhotoUploadContainer} />
     </>
     );
   };

@@ -1,18 +1,20 @@
-import { loginUser } from '../../actions/session_actions';
+import { verifyUser, loginUser } from '../../actions/session_actions';
 import { connect } from 'react-redux';
-import SessionForm from './session_form';
+import LoginForm from './login_form';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return ({
-    errors: state.errors,
+    verified: state.session.verified,
+    errors: state.errors.session,
     formType: 'Log In'
   });
 };
 
-const mapStateToDispatch = (dispatch, ownProps) => {
+const mapStateToDispatch = (dispatch) => {
   return ({
-    processForm: (user) => dispatch(loginUser(user))
+    verifyUser: (username) => dispatch(verifyUser(username)),
+    processLogin: (user) => dispatch(loginUser(user))
   });
 };
 
-export default connect(mapStateToProps, mapStateToDispatch)(SessionForm);
+export default connect(mapStateToProps, mapStateToDispatch)(LoginForm);

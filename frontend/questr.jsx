@@ -24,10 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   delete window.currentUser;
 
   // TEST CODE START
-
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
   // TEST CODE END
 
   ReactDOM.render(<Root store={store} />, root);

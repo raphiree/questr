@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, VERIFY_USERNAME } from '../actions/session_actions';
 
 export default (oldState = {}, action) => {
   let newState = Object.assign({}, oldState);

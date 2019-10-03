@@ -4,8 +4,18 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      render 'api/users/show'
     else
-      render json: @user.errors.full_messages, status: 401;
+      render json: ['Invalid Credentials'], status: 401
+    end
+  end
+
+  def search
+    verified = User.verify_username(user_params[:username])
+    if verified
+      render json: {username: user_params[:username]}
+    else
+      render json: ['Could not find user'], status: 422
     end
   end
 

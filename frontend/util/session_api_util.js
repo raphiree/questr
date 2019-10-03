@@ -8,6 +8,14 @@ export const signup = user => {
   )
 }
 
+export const checkUser = username => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/users/search',
+    data: { user: {username: username} }
+  })
+)
+
 export const login = user => (
   $.ajax({
     method: 'POST',

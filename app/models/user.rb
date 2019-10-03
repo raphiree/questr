@@ -18,6 +18,11 @@ class User < ApplicationRecord
     return user if user && user.is_password?(password)
   end
 
+  def self.verify_username(username)
+    user = User.find_by(username: username)
+    return true if user
+  end
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end
@@ -38,7 +43,7 @@ class User < ApplicationRecord
 
   def reset_session_token
     self.session_token = self.class.generate_session_token
-    self.save! 
+    self.save!
     self.session_token
   end
 

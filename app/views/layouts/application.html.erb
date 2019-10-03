@@ -2,13 +2,24 @@
 <html>
   <head>
     <title>Questr</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+  
+    <% if logged_in? %>
+      <script type="text/javascript">window.currentUser = <%= render(
+          'api/users/user.json.jbuilder',
+          user: current_user
+        ).html_safe %></script>
+    <% end %>
+  
   </head>
-
   <body>
     <%= yield %>
   </body>

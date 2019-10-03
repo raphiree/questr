@@ -12,7 +12,7 @@ class Greeting extends React.Component {
     if (user) {
       greet = (
         <div id="greeter">
-          <p id="header-logo">LOGO PLACEHOLDER</p>
+          <p id="header-logo">questr</p>
           <h3>Hello {user.username}</h3>
           <button onClick={() => this.props.logoutUser(user)}>Log out</button>
         </div>
@@ -21,7 +21,7 @@ class Greeting extends React.Component {
       greet = (
         <>
           <nav className="splashHeader">
-            <p id="header-logo">LOGO PLACEHOLDER</p>
+            <p id="header-logo">questr</p>
             <div id="search">
               <div className="magnifier">
                 <i className="material-icons">search</i>

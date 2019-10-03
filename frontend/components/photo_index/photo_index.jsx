@@ -11,7 +11,7 @@ class PhotoIndex extends React.Component {
     return (
       <div id="entryForm">
         <div id="formHeader">
-          <p id="header-logo">LOGO PLACEHOLDER</p>
+          <p id="header-logo">questr</p>
         </div>
 
           <p id="temp">Welcome <br/>

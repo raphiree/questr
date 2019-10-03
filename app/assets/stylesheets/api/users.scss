@@ -31,8 +31,13 @@ body {
   padding-left: 24px;
   min-width: 100px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 30px;
+  font-weight: bold;
   color: white;
+}
+
+#formHeader #header-logo{
+  margin-left: 8%;
 }
 
 #search {

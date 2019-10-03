@@ -35,17 +35,17 @@ class SessionForm extends React.Component {
           <input
             type="text"
             onChange={this.update('username')}
-            defaultValue="Username"
+            placeholder="Username"
           />
           <input
             type="text"
             onChange={this.update('email')}
-            defaultValue="E-mail address"
+            placeholder="E-mail address"
           />
           <input
             type="password"
             onChange={this.update('password')}
-            defaultValue="Password"
+            placeholder="Password"
           />
           <button>{formType}</button>
           <p className="finePrint">E-mail field is optional. I promise I won't do anything bad with your information.</p>
@@ -59,12 +59,12 @@ class SessionForm extends React.Component {
           <input
             type="text"
             onChange={this.update('username')}
-            defaultValue="Username"
+            placeholder="Username"
           />
           <input
             type="password"
             onChange={this.update('password')}
-            defaultValue="Password"
+            placeholder="Password"
           />
           <button>{formType}</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>
@@ -75,13 +75,13 @@ class SessionForm extends React.Component {
     return (
       <div id="entryForm">
         <div id="formHeader">
-          <p id="header-logo">LOGO PLACEHOLDER</p>
+          <p id="header-logo">questr</p>
         </div>
         <div id="formRender">
           {formRender}
         </div>
         <div id="formFooter">
-          Text
+          
         </div>
       </div>
     )

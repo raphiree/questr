@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
     };
     this.checkUsername = this.checkUsername.bind(this);
     this.signinUser = this.signinUser.bind(this);
-    console.log(props.errors);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   checkUsername(e) {
@@ -24,6 +24,12 @@ class LoginForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.processLogin(user);
   };
+
+  guestLogin(e) {
+    e.preventDefault();
+    const user = { username: 'Guest', password: 'password' };
+    this.props.processLogin(user);
+  }
 
   update(field) {
     return (e) => {
@@ -62,6 +68,7 @@ class LoginForm extends React.Component {
             placeholder="Username"
           />
           <button>Continue</button>
+          <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>
         </form>
       )};

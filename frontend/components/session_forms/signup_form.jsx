@@ -10,6 +10,7 @@ class SignupForm extends React.Component {
         email: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   handleSubmit(e) {
@@ -24,9 +25,19 @@ class SignupForm extends React.Component {
     }
   };
 
+  guestLogin(e) {
+    e.preventDefault();
+    const user = { username: 'Guest', password: 'password' };
+    this.props.processLogin(user);
+  }
+
   render() {
 
     const formType = this.props.formType;
+
+    // temporary error check
+    if (this.props.errors.session) {console.log(this.props.errors)};
+
     const formRender = (
         <form onSubmit={this.handleSubmit} id="userForm">
           <h3>Sign up for Questr!</h3>
@@ -46,6 +57,8 @@ class SignupForm extends React.Component {
             placeholder="Password"
           />
           <button>{formType}</button>
+          <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
+
           <p className="finePrint">E-mail field is optional. I promise I won't do anything bad with your information.</p>
           <p className="oops">Already a Questr member? <Link to="/login" >Log in here.</Link></p>
         </form>

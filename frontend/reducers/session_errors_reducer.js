@@ -5,7 +5,7 @@ export default (oldState = [], action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_ERRORS:
-      return Object.assign({}, newState, { errors: action.errors });
+      return Object.assign({}, newState, action.errors);
     case RECEIVE_CURRENT_USER:
       return Object.assign({}, newState, []);
     default:

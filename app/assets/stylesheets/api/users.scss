@@ -214,7 +214,7 @@ body {
   border-radius: 3px;
 }
 
-// TEMPORARY
+// TEMPORARY - for "Welcome user" in photo index
 
 #temp {
   font-family: 'Montserrat', sans-serif;
@@ -222,6 +222,8 @@ body {
   font-size: 80px;
   color: black;
 }
+
+// Ends here
 
 .logout{
   width: 200px;
@@ -302,4 +304,26 @@ body {
 
 #hide_passwordField {
   display: none;
+}
+
+.guestLogin {
+  margin-top: 15px;
+  width: 200px;
+  height: 44px;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  background-color: rgb(255, 166, 0);
+  padding-left: 0px;
+}
+
+#userForm .guestLogin {
+  background-color: rgb(255, 166, 0);
+  margin-top: 8px;
+}
+
+.guestLogin:hover {
+  color: white;
+  border: 1px solid rgb(211, 77, 0);
+  transition: 0.25s;
 }

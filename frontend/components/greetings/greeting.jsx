@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom';
 class Greeting extends React.Component {
   constructor(props) {
     super(props);
+
+    this.guestLogin = this.guestLogin.bind(this);
+  }
+
+  guestLogin(e) {
+    e.preventDefault();
+    const user = {username: 'Guest', password: 'password'};
+    this.props.processLogin(user);
   }
 
   render() {
@@ -26,7 +34,7 @@ class Greeting extends React.Component {
               <div className="magnifier">
                 <i className="material-icons">search</i>
               </div>
-            <input id="searchBar" type="text" defaultValue="Photos, people, or groups"/>
+            <input id="searchBar" type="text" placeholder="Photos, people, or groups"/>
             </div>
             <nav id="userAuth">
               <Link to="/login"><div id="login">Log In</div></Link>
@@ -41,6 +49,7 @@ class Greeting extends React.Component {
               <Link to="/signup">
                 <button className="signup">Sign Up</button>
               </Link>
+                <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
             </div>
           </div>
 

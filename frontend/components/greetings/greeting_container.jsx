@@ -1,6 +1,6 @@
 import Greeting from './greeting';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/session_actions';
+import { loginUser, logoutUser } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
   return { currentUser: state.entities.users[state.session.id] };
@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logoutUser: user => dispatch(logoutUser(user))
+    logoutUser: user => dispatch(logoutUser(user)),
+    processLogin: (user) => dispatch(loginUser(user))
   };
 };
 

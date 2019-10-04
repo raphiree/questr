@@ -34,7 +34,6 @@ const receiveErrors = errors => {
 };
 
 export const signupUser = formUser => dispatch => {
-  debugger
   signup(formUser).then(
     user => dispatch(receiveCurrentUser(user)),
     error => dispatch(receiveErrors(error.responseJSON))

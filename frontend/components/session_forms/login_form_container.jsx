@@ -1,4 +1,4 @@
-import { verifyUser, loginUser } from '../../actions/session_actions';
+import { verifyUser, loginUser, clearError } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import LoginForm from './login_form';
 
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 const mapStateToDispatch = (dispatch) => {
   return ({
     verifyUser: (username) => dispatch(verifyUser(username)),
-    processLogin: (user) => dispatch(loginUser(user))
+    processLogin: (user) => dispatch(loginUser(user)),
+    clearError: () => dispatch(clearError()),
   });
 };
 

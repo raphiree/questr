@@ -13,6 +13,10 @@ class LoginForm extends React.Component {
     this.guestLogin = this.guestLogin.bind(this);
   }
 
+  componentDidMount() {
+    this.props.clearError();
+  }
+
   checkUsername(e) {
     e.preventDefault();
     const username = this.state.username;
@@ -38,6 +42,14 @@ class LoginForm extends React.Component {
   };
 
   render() {
+
+    let errorText;
+    if (this.props.errors[0]) {
+      errorText = (<div className="errorText"><p>{this.props.errors[0]}</p></div>);
+    } else {
+      errorText = (<div className="hidden"></div>);
+    }
+
     const formType = this.props.formType;
     let formRender;
     if (this.props.verified === true) {
@@ -46,8 +58,9 @@ class LoginForm extends React.Component {
           <img
             src={`${window.dots}`}
             className="dots"
-          />
+            />
           <h3>Log in to Quester!</h3>
+            {errorText}
           <input
             type="text"
             onChange={this.update('username')}
@@ -69,12 +82,13 @@ class LoginForm extends React.Component {
           className="dots"
         />
           <h3>Log in to Quester!</h3>
+          {errorText}
           <input
             type="text"
             onChange={this.update('username')}
             placeholder="Username"
           />
-          <button>Continue</button>
+          <button onClick={this.props.clearError}>Continue</button>
           <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>
         </form>

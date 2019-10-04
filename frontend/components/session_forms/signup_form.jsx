@@ -13,6 +13,10 @@ class SignupForm extends React.Component {
     this.guestLogin = this.guestLogin.bind(this);
   }
 
+  componentDidMount() {
+    this.props.clearError();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -35,8 +39,12 @@ class SignupForm extends React.Component {
 
     const formType = this.props.formType;
 
-    // temporary error check
-    if (this.props.errors.session) {console.log(this.props.errors)};
+    let errorText;
+    if (this.props.errors[0]) {
+      errorText = (<div className="errorText"><p>{this.props.errors[0]}</p></div>);
+    } else {
+      errorText = (<div className="hidden"></div>);
+    }
 
     const formRender = (
         <form onSubmit={this.handleSubmit} id="userForm">
@@ -45,6 +53,7 @@ class SignupForm extends React.Component {
             className="dots"
           />
           <h3>Sign up for Questr!</h3>
+          {errorText}
           <input
             type="text"
             onChange={this.update('username')}

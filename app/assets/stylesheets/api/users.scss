@@ -9,6 +9,10 @@ body {
   position:relative;
 }
 
+.hidden {
+  display: none;
+}
+
 #greeter {
   display: flex;
   flex-direction: column;
@@ -330,4 +334,20 @@ body {
 
 .dots {
   margin-bottom: 16px;
+}
+
+.errorText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 36px;
+  background-color: #fed8dc;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.errorText p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }

@@ -38,12 +38,15 @@ class LoginForm extends React.Component {
   };
 
   render() {
-
     const formType = this.props.formType;
     let formRender;
     if (this.props.verified === true) {
       formRender = (
         <form onSubmit={this.signinUser} id="userForm">
+          <img
+            src={`${window.dots}`}
+            className="dots"
+          />
           <h3>Log in to Quester!</h3>
           <input
             type="text"
@@ -61,6 +64,10 @@ class LoginForm extends React.Component {
       )} else {
       formRender = (
         <form onSubmit={this.checkUsername} id="userForm">
+        <img 
+          src={`${window.dots}`} 
+          className="dots"
+        />
           <h3>Log in to Quester!</h3>
           <input
             type="text"

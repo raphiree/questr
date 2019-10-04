@@ -40,6 +40,10 @@ class SignupForm extends React.Component {
 
     const formRender = (
         <form onSubmit={this.handleSubmit} id="userForm">
+          <img
+            src={`${window.dots}`}
+            className="dots"
+          />
           <h3>Sign up for Questr!</h3>
           <input
             type="text"

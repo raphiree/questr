@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-  background-image: image-url('splash/06.jpg');
-  background-repeat: no-repeat;
-  background-position: center top;
-  position:relative;
-}
+// body {
+//   background-image: image-url('splash/06.jpg');
+//   background-repeat: no-repeat;
+//   background-position: center top;
+//   position:relative;
+// }
 
 input {
   outline: none;
@@ -15,6 +15,17 @@ input {
 
 .hidden {
   display: none;
+}
+
+#greetings {
+  width: 100%;
+  height: 100%;
+  background-image: image-url('splash/06.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #greeter {
@@ -42,6 +53,7 @@ input {
   font-size: 30px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 #formHeader #header-logo{
@@ -73,6 +85,7 @@ input {
   height: 33px;
   text-align: right;
   color: rgb(83, 83, 83);
+  cursor: pointer;
 }
 
 #searchBar {
@@ -93,7 +106,7 @@ input {
   padding-right: 24px;
 }
 
-#greeter #login {
+#greetings #login {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
@@ -112,9 +125,10 @@ input {
   background-color: white;
 }
 
-#greeter .signup:hover {
+#greetings .signup:hover {
   color: grey;
   transition: 0.25s;
+  cursor: pointer;
 }
 
 #splashText {
@@ -283,6 +297,7 @@ input {
   font-size: 14.5px;
   color: white;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 #userForm .oops, a {
@@ -322,6 +337,7 @@ input {
   padding-left: 0px;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .prompt .guestLogin {
@@ -345,7 +361,8 @@ input {
   justify-content: center;
   align-items: center;
   width: 270px;
-  height: 36px;
+  min-height: 36px;
+  padding: 7px 0px 7px 0px;
   background-color: #fed8dc;
   margin-bottom: 15px;
   border-radius: 3px;

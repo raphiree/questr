@@ -86,11 +86,11 @@ class SignupForm extends React.Component {
               onChange={this.update('password')}
               placeholder="Password"
             />
-            <button 
+            <div 
               className="visibility"
               onClick={this.togglePasswordField}>
               <i className="material-icons">{this.state.visibility}</i>
-            </button>
+            </div>
           </div>
           <button className="formButton">{formType}</button>
           <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>

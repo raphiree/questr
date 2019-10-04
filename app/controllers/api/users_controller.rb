@@ -6,7 +6,13 @@ class Api::UsersController < ApplicationController
       login(@user)
       render 'api/users/show'
     else
-      render json: ['Invalid Credentials'], status: 401
+      if user_params[:password].length < 6
+        render json: ['Passwords need to be 6 or more characters'], status: 411
+      elsif User.find_by(username: user_params[:username])
+        render json: ['Username already taken'], status: 409
+      else
+        render json: ['Something went wrong'], status: 406
+      end
     end
   end
 

@@ -29,7 +29,7 @@ class Greeting extends React.Component {
       greet = (
         <div id="greetings">
           <nav className="splashHeader">
-            <p id="header-logo">questr</p>
+            <Link to="/"><p id="header-logo">questr</p></Link>
             <div id="search">
               <div className="magnifier">
                 <i className="material-icons">search</i>
@@ -59,13 +59,13 @@ class Greeting extends React.Component {
               <li>Contact</li>
             </ul>
           </div>
-        <div/>
+        </div>
       )
     }
     return (
-      <div id="greeter">
-          {greet}
-      </div>
+      <>
+        {greet}
+      </>
       )
   }
 }

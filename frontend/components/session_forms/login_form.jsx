@@ -88,11 +88,11 @@ class LoginForm extends React.Component {
               onChange={this.update('password')}
               placeholder="Password"
             />
-            <button
+            <div
               className="visibility"
               onClick={this.togglePasswordField}>
               <i className="material-icons">{this.state.visibility}</i>
-            </button>
+            </div>
           </div>
           <button className="formButton" onClick={this.props.clearError}>Log in</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>

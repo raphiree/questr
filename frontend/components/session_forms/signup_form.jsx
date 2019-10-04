@@ -8,9 +8,11 @@ class SignupForm extends React.Component {
         username: "",
         password: "",
         email: "",
+        visibility: "visibility",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
+    this.togglePasswordField = this.togglePasswordField.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,18 @@ class SignupForm extends React.Component {
     this.props.processLogin(user);
   }
 
+  togglePasswordField(e) {
+    e.preventDefault();
+    let passField = document.getElementsByClassName('pinput');
+    if (passField[0].type === "text") {
+      passField[0].type = "password";
+      this.setState({visibility: "visibility"})
+    } else {
+      passField[0].type = "text";
+      this.setState({visibility: "visibility_off"})
+    }
+  }
+
   render() {
 
     const formType = this.props.formType;
@@ -54,22 +68,31 @@ class SignupForm extends React.Component {
           />
           <h3>Sign up for Questr!</h3>
           {errorText}
-          <input
+          <input className="authinputs"
             type="text"
             onChange={this.update('username')}
             placeholder="Username"
           />
           <input
+            className="authinputs"
             type="text"
             onChange={this.update('email')}
             placeholder="E-mail address"
           />
-          <input
-            type="password"
-            onChange={this.update('password')}
-            placeholder="Password"
-          />
-          <button>{formType}</button>
+          <div className="password">
+            <input
+              className="pinput"
+              type="password"
+              onChange={this.update('password')}
+              placeholder="Password"
+            />
+            <button 
+              className="visibility"
+              onClick={this.togglePasswordField}>
+              <i className="material-icons">{this.state.visibility}</i>
+            </button>
+          </div>
+          <button className="formButton">{formType}</button>
           <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
 
           <p className="finePrint">E-mail field is optional. I promise I won't do anything bad with your information.</p>

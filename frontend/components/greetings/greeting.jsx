@@ -34,7 +34,7 @@ class Greeting extends React.Component {
               <div className="magnifier">
                 <i className="material-icons">search</i>
               </div>
-            <input id="searchBar" type="text" placeholder="Photos, people, or groups"/>
+              <input id="searchBar" type="text" placeholder="Photos, people, or groups"/>
             </div>
             <nav id="userAuth">
               <Link to="/login"><div id="login">Log In</div></Link>
@@ -49,7 +49,7 @@ class Greeting extends React.Component {
               <Link to="/signup">
                 <button className="signup">Sign Up</button>
               </Link>
-                <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
+              <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
             </div>
           </div>
 

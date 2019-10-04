@@ -7,10 +7,12 @@ class LoginForm extends React.Component {
     this.state = {
       username: "",
       password: "",
+      visibility: "visibility",
     };
     this.checkUsername = this.checkUsername.bind(this);
     this.signinUser = this.signinUser.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
+    this.togglePasswordField = this.togglePasswordField.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +43,18 @@ class LoginForm extends React.Component {
     }
   };
 
+  togglePasswordField(e) {
+    e.preventDefault();
+    let passField = document.getElementsByClassName('pinput');
+    if (passField[0].type === "text") {
+      passField[0].type = "password";
+      this.setState({ visibility: "visibility" })
+    } else {
+      passField[0].type = "text";
+      this.setState({ visibility: "visibility_off" })
+    }
+  }
+
   render() {
 
     let errorText;
@@ -62,16 +76,25 @@ class LoginForm extends React.Component {
           <h3>Log in to Quester!</h3>
             {errorText}
           <input
+            className="authinputs"
             type="text"
             onChange={this.update('username')}
             placeholder="Username"
           />
-          <input
-            type="password"
-            onChange={this.update('password')}
-            placeholder="Password"
-          />
-          <button>{formType}</button>
+          <div className="password">
+            <input
+              className="pinput"
+              type="password"
+              onChange={this.update('password')}
+              placeholder="Password"
+            />
+            <button
+              className="visibility"
+              onClick={this.togglePasswordField}>
+              <i className="material-icons">{this.state.visibility}</i>
+            </button>
+          </div>
+          <button className="formButton" onClick={this.props.clearError}>Log in</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>
         </form>
       )} else {
@@ -84,11 +107,12 @@ class LoginForm extends React.Component {
           <h3>Log in to Quester!</h3>
           {errorText}
           <input
+            className="authinputs"
             type="text"
             onChange={this.update('username')}
             placeholder="Username"
           />
-          <button onClick={this.props.clearError}>Continue</button>
+          <button className="formButton" onClick={this.props.clearError}>Continue</button>
           <button className="guestLogin" onClick={this.guestLogin}>Log in as Guest</button>
           <p className="oops">Not a Questr member? <Link to="/signup" >Sign up here.</Link></p>
         </form>

@@ -9,6 +9,10 @@ body {
   position:relative;
 }
 
+input {
+  outline: none;
+}
+
 .hidden {
   display: none;
 }
@@ -50,6 +54,14 @@ body {
   width: 100%;
   margin-left: 90px;
   margin-right: 90px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+}
+
+#search:focus-within {
+  background-color: rgba(255, 255, 255, 1);
+  transition: 0.25s;
+  border: none;
 }
 
 .magnifier {
@@ -61,25 +73,15 @@ body {
   height: 33px;
   text-align: right;
   color: rgb(83, 83, 83);
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 3px 0px 0px 3px;
 }
 
 #searchBar {
   width: 100%;
-  height: 31px;
   font-family: 'Montserrat', sans-serif;
-  border-radius: 0px 3px 3px 0px;
-  background-color: rgba(255, 255, 255, 0.7);
   border: none;
+  background-color: transparent;
   color: rgb(83, 83, 83);
   font-size: 12.5px;
-}
-
-#searchBar:focus {
-  background-color: rgba(255, 255, 255, 1);
-  transition: 0.25s;
-  border: none;
 }
 
 #userAuth {
@@ -258,7 +260,7 @@ body {
   width: 100%;
 }
 
-#userForm input {
+#userForm > input {
   margin: 0px 0px 8px 0px;
   width: 270px;
   height: 55px;
@@ -271,12 +273,12 @@ body {
   font-size: 16px;
 }
 
-#userForm button {
+#userForm > .formButton {
   width: 270px;
   height: 40px;
   background-color: #128fdc;
   padding: 8px 24px 8px 24px;
-  margin-top: 32px;
+  margin-top: 20px;
   font-family: 'Montserrat', sans-serif;
   font-size: 14.5px;
   color: white;
@@ -311,19 +313,21 @@ body {
 }
 
 .guestLogin {
-  margin-top: 15px;
-  width: 200px;
-  height: 44px;
+  margin-top: 8px;
+  width: 270px;
+  height: 40px;
   border: none;
   border-radius: 3px;
-  font-size: 20px;
   background-color: rgb(255, 166, 0);
   padding-left: 0px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
 }
 
-#userForm .guestLogin {
-  background-color: rgb(255, 166, 0);
-  margin-top: 8px;
+.prompt .guestLogin {
+  width: 200px;
+  height: 44px;
+  font-size: 20px;
 }
 
 .guestLogin:hover {
@@ -350,4 +354,49 @@ body {
 .errorText p {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
+}
+
+.password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 55px;
+  border-radius: 5px;
+  border: 1px solid #898989;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.password:focus-within{
+  border-color: #128fdc;
+}
+
+.password .pinput {
+  width: 215px;
+  color: #898989;
+  font-size: 16px;
+  border:none;
+  padding: 16px 0px 16px 16px;
+}
+
+.password .visibility {
+  width: 55px;
+  font-size: 14.5px;
+  background-color: white;
+  color: #898989;
+}
+
+#userForm .authinputs:focus {
+  border-color: #128fdc;
+}
+
+.password .pinput:focus + .visibility {
+  border-color: #128fdc;
+  color: #128fdc;
+}
+
+.password .visibility:focus {
+  border-color: #128fdc;
+  color: #128fdc;
 }

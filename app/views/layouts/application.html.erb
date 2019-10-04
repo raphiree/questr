@@ -9,6 +9,8 @@
     <script> type="text/javascript" 
       window.favicon = "<%= image_url("icons/flickr_favicon.png") %>"
     </script>
+    <%= favicon_link_tag asset_url("icons/flickr_favicon.png") %>
+    
     <script> type="text/javascript" 
       window.dots = "<%= image_url("icons/flickr_dots.png") %>"
     </script>
@@ -17,7 +19,6 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= favicon_link_tag asset_url("icons/flickr_favicon.png") %>
 
     <% if logged_in? %>
       <script type="text/javascript">window.currentUser = <%= render(

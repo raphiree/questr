@@ -27,7 +27,7 @@ class Greeting extends React.Component {
       )
     } else {
       greet = (
-        <>
+        <div id="greetings">
           <nav className="splashHeader">
             <p id="header-logo">questr</p>
             <div id="search">
@@ -59,7 +59,7 @@ class Greeting extends React.Component {
               <li>Contact</li>
             </ul>
           </div>
-        </>
+        <div/>
       )
     }
     return (

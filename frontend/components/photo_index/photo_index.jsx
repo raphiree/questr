@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class PhotoIndex extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class PhotoIndex extends React.Component {
 
   render() {
     let user = this.props.currentUser
-    console.log(user);
     return (
       <div id="entryForm">
         <div id="formHeader">
@@ -18,8 +18,10 @@ class PhotoIndex extends React.Component {
           {user.username}</p>
           <button className="logout" onClick={() => this.props.logoutUser(user)}>Log out</button>
 
+          <Link to="upload"><button className="logout">Photo Upload</button></Link>
+
         <div id="formFooter">
-          Text
+          Other
         </div>
       </div>
     )

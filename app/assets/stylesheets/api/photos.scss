@@ -44,13 +44,82 @@
 
 .container-upload .toolBar {
   width: 100%;
-  height: 41px;
   background-color: #efefef;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
-.container-upload .toolBar #upload-button {
+
+.container-upload .toolBar-left {
+  height: 41px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[class^="menu-bar-"] {
+  background-color: rgba(255, 0, 0, 0);
+  margin-left: 15px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+[class^="menu-bar-"]:hover {
+  background-image: linear-gradient(to bottom, rgba(206, 206, 206, 0), rgb(204, 204, 204));
+  border: 1px solid #adadad;
+  border-radius: 3px;
+}
+
+[class^="icon-"] {
+  padding: 4px 9px 2px 32px;
+  min-width: 18px;
+  margin-bottom: 3px;
+  min-height: 16px;
+  font-family: sans-serif;
+  font-size: 14px;
+  background-repeat: no-repeat;
+}
+
+.icon-add {
+  background-image: image-url('icons/add.png');
+  background-position: 9px 5px;
+  margin-left: 1px;
+}
+.icon-remove {
+  background-image: image-url('icons/remove.png');
+  background-position: 9px 5px;
+  margin-left: -5px;
+}
+.icon-size {
+  background-image: image-url('icons/size.png');
+  background-position: 9px 5px;
+}
+.icon-sort {
+  background-image: image-url('icons/sort.png');
+  background-position: 9px 5px;
+}
+.icon-all {
+  background-image: image-url('icons/all.png');
+  background-position: 9px 5px;
+}
+.icon-info {
+  background-image: image-url('icons/info.png');
+  background-position: 9px 5px;
+}
+
+.grouping1 {
+  background-image: image-url('icons/nice-divider.png');
+  background-repeat: no-repeat;
+  background-position: 90px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 222px;
+}
+
+.container-upload .toolBar #add-button {
   display: none;
 }
 .container-upload .toolBar .upload-label {
@@ -69,17 +138,30 @@
   cursor: pointer;
 }
 
-
-
-
-
 .container-upload .content {
   width: 100%;
   height: 100%;
+  display: flex;
+  
 }
 
 .container-upload .bottomBar {
   width: 100%;
+}
+
+#uploadSpread {
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.previewBox {
+}
+
+.previewImage {
+  width: 169px;
 }
 
 // Unique elements only

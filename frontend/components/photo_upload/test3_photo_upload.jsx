@@ -2,67 +2,43 @@ import React from 'react';
 import { merge } from 'lodash';
 import { Link } from 'react-router-dom';
 import { uploadImages } from '../../actions/upload_actions';
-import PhotoUploadImages from './photo_upload_images';
 
 class PhotoUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      files: [],
-    };
+      images:{}
+    }
     this.handleFile = this.handleFile.bind(this);
   }
 
-  // handleFile(e) {
-  //   const uploadFiles = e.currentTarget.files;
-  //   let newState = this.state;
-  //   for (let i = 0; i < uploadFiles.length; i++) {
-  //     const image_file = uploadFiles[i];
-  //     const fileReader = new FileReader();
-  //     fileReader.onloadend = () => {
-  //       newState.images[i] = {
-  //         image: image_file, 
-  //         image_url: fileReader.result, 
-  //         id: i
-  //       };
-  //     }
-  //     if (image_file) {
-  //       fileReader.readAsDataURL(image_file);
-  //     }
-  //   }
-  //   this.setState(newState);
-  // }
-
   handleFile(e) {
-    let newState = this.state;
     const uploadFiles = e.currentTarget.files;
+    const uploads = [];
     for (let i = 0; i < uploadFiles.length; i++) {
-      newState.files[i] = {
-        id : i,
-        file : uploadFiles[i], 
-        url : URL.createObjectURL(uploadFiles[i]),
+      const image_file = e.currentTarget.files[i];
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        uploads.push([{id: i, images: image_file, image_url: fileReader.result}]);
+      }
+      if (image_file) {
+        fileReader.readAsDataURL(image_file);
       }
     }
-    this.setState(newState);
+    console.log(uploads)
+    debugger
+    this.props.uploadImages(uploads);
   }
 
-  componentDidUpdate () {
-    console.log(this.state.files);
-    console.log(Object.keys(this.state.files).length);
-  }
-  
-  componentDidMount () {
+  componentDidUpdate() {
+    console.log(this.props);
+    debugger
   }
 
   render() {
 
-    const preview = this.state.files.map(file => {
-      return (
-        <PhotoUploadImages url={file.url} key={file.id} />
-      )
-    })
-
     return (
+
       <div className="background-container">
         <div className="container-upload">
           <div className="topBar">
@@ -88,12 +64,12 @@ class PhotoUpload extends React.Component {
                     multiple
                   />
                 </div>
-                
 
-                  <button className="menu-bar-size">
-                    <div className="icon-size">Size</div>
-                  </button>
-                
+
+                <button className="menu-bar-size">
+                  <div className="icon-size">Size</div>
+                </button>
+
                 <button className="menu-bar-sort">
                   <div className="icon-sort">Sort</div>
                 </button>
@@ -106,7 +82,7 @@ class PhotoUpload extends React.Component {
 
 
               </div>
-              
+
               <label className="upload-label" htmlFor="upload-button">Upload 10 Photos</label>
 
             </nav>
@@ -116,17 +92,7 @@ class PhotoUpload extends React.Component {
               <p>Select photos to edit...</p>
             </div>
 
-
-
-
-
-            <div id="uploadSpread">
-              {preview}
-            </div>
-
-
-
-
+            <div></div>
 
           </form>
           <div className="bottomBar"></div>

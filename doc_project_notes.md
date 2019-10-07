@@ -3,6 +3,9 @@
 1. Click on upload icon
 2. Links to "/upload" page
   - Upload page allows click and drag, or "add" button
+
+How do I select the correct file inside State when clicking on the preview image?
+
 3. Upon adding a photo, the photo shows up as delay
   1. photo = Photo.new
   2. attach image to Photo

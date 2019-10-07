@@ -26,7 +26,13 @@ class PhotoUpload extends React.Component {
       }
     }
     this.props.uploadImages(newState);
-    console.log(newState);
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+    console.log(this.props);
+    console.log(this.props.previews.images);
+    debugger
   }
 
   render() {
@@ -45,22 +51,51 @@ class PhotoUpload extends React.Component {
             <nav className="navBar">
               <Link to="/"><div className="colorlogo"><p>quest</p><p>r</p></div></Link>
             </nav>
-            <nav className="toolBar">
-              <div></div>
 
-              <input
-                id="upload-button"
-                type="file"
-                onChange={this.handleFile.bind(this)}
-                multiple
-              />
+            <nav className="toolBar">
+              <div className="toolBar-left">
+                <div className="grouping1" >
+                  <label className="menu-bar-add" htmlFor="add-button">
+                    <div className="icon-add">Add</div>
+                  </label>
+
+                  <button className="menu-bar-remove">
+                    <div className="icon-remove">Remove</div>
+                  </button>
+
+                  <input
+                    id="add-button"
+                    type="file"
+                    onChange={this.handleFile}
+                    multiple
+                  />
+                </div>
+
+
+                <button className="menu-bar-size">
+                  <div className="icon-size">Size</div>
+                </button>
+
+                <button className="menu-bar-sort">
+                  <div className="icon-sort">Sort</div>
+                </button>
+                <button className="menu-bar-all">
+                  <div className="icon-all">All</div>
+                </button>
+                <button className="menu-bar-info">
+                  <div className="icon-info">Sort</div>
+                </button>
+
+
+              </div>
+
               <label className="upload-label" htmlFor="upload-button">Upload 10 Photos</label>
 
             </nav>
           </div>
           <form className="content">
             <div id="imageAttr">
-              <p>Select photos to edit... {previewCount}</p>
+              <p>Select photos to edit...</p>
             </div>
 
             <div></div>

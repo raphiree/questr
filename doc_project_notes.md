@@ -1,3 +1,7 @@
+EXTRA STUFF THAT I DON'T HAVE TIME FOR
+- Allow Description textarea to grow in height with description growth
+
+
 
 
 1. Click on upload icon

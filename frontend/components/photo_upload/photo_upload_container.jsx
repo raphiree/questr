@@ -1,7 +1,7 @@
 import PhotoUpload from './photo_upload';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/session_actions';
-import { uploadImages } from '../../actions/upload_actions';
+import { uploadPhotos } from '../../actions/photo_actions';
 
 const mapStateToProps = (state) => {
   return ({ 
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logoutUser: user => dispatch(logoutUser(user)),
-    uploadImages: uploads => dispatch(uploadImages(uploads))
+    uploadPhotos: uploads => dispatch(uploadPhotos(uploads))
   };
 };
 

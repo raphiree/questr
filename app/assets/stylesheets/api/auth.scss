@@ -116,7 +116,7 @@ input {
   padding-right: 24px;
 }
 
-.signup {
+[class^="signup"] {
   width: 97px;
   height: 32px;
   border: none;
@@ -124,10 +124,17 @@ input {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 13.5px;
+}
+
+.signup-white {
   background-color: white;
 }
 
-#greetings .signup:hover {
+.signup-blue {
+  background-color: rgb(18, 143, 220);
+}
+
+#greetings .signup-white:hover {
   color: grey;
   transition: 0.25s;
   cursor: pointer;

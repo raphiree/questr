@@ -1,3 +1,12 @@
+#photostream-wrapper {
+  background-color: #f3f5f6;
+  height: 100%;
+}
+
+[class^="user-"] {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .user-nav-bar {
   display: flex;
   justify-content: center;
@@ -13,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   width: 80%;
+  // min-width: 1024px;
 }
 
 #user-nav-logo {
@@ -22,6 +32,11 @@
   color: white;
   cursor: pointer;
   letter-spacing: -2px;
+}
+
+#user-nav-logo:hover {
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.5s;
 }
 
 .user-header-wrapper {
@@ -35,8 +50,33 @@
       rgba(0, 0, 0, 0.5)), 
       image-url('covers/coverphoto_03.jpg'
       );
-
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
+
+.user-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 80%;
+  margin-bottom: 20px;
+}
+
+.user-avatar  {
+  width: 100px;
+  height: 100px;
+  background-image: image-url('icons/default_avatar.png');
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-header h1 {
+  color: white;
+  font-size: 35px;
+}
+
 .user-header-bar-wrapper {
   display: flex;
   justify-content: center;
@@ -49,10 +89,39 @@
 
 .user-header-bar {
   width: 80%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+[class^="user-nav-button-"] {
+  font-size: 14px;
+  border-bottom: 3px solid rgb(18, 143, 220);
+  height: 48px;
+  padding: 0px 15px 0px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-content-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+}
+
+.signup-blue {
+  background-color: rgb(18, 143, 220);
+  color: white;
+}
+
+.signup-blue:hover {
+  background-color: rgba(18, 143, 220, 0.8);
+  transition: 0.5s;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#userAuth .login:hover {
+  color: rgba(255, 255, 255, 0.8);
 }

@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PhotoStreamPictures from './photo_stream_pictures';
 
 class PhotoStream extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
+      owner: this.props.pageOwner,
+      photos: this.props.ownerPhotos,
     }
-    debugger
+  }
+
+  componentDidUpdate() {
   }
 
   componentDidMount() {
@@ -22,20 +27,28 @@ class PhotoStream extends React.Component {
     if (user) {
       authOptions = (
         <nav id="userAuth">
-          <button className="signup">Sign Out</button>
+          <button className="signup-blue">Sign Out</button>
         </nav>
       )
     } else {
       authOptions = (
         <nav id="userAuth">
           <Link to="/login"><div className="login">Log In</div></Link>
-          <Link to="/signup"><button className="signup">Sign Up</button></Link>
+          <Link to="/signup"><button className="signup-blue">Sign Up</button></Link>
         </nav>
       )  
     }
-    
+
+    const photoStream = Object.keys(this.state.photos).map((idx, photo) => {
+      return (
+        <div class="user-photostream-grid-item">
+          <PhotoStreamPictures photo={this.state.photos[idx]} key={photo.id} />
+        </div>
+      )
+    })
+
     return (
-      <>
+      <div id="photostream-wrapper">
         <nav className="user-nav-bar">
           <div className="user-nav-wrapper">
             <Link to="/"><p id="user-nav-logo">questr</p></Link>
@@ -43,17 +56,28 @@ class PhotoStream extends React.Component {
           </div>
         </nav>
         <div className="user-header-wrapper">
-          <p>{this.props.currentUser}</p>
+          <div className="user-header">
+            <div className="user-avatar"></div>
+            <h1>{this.props.pageOwner}</h1>
+          </div>
         </div>
         <div className="user-header-bar-wrapper">
           <div className="user-header-bar">
-            "User Nav stuff"
+            <Link to={`/users/${this.state.id}/photos`}>
+              <div className="user-nav-button-photostream">Photostream</div>
+            </Link>
           </div>
         </div>
         <div className="user-content-wrapper">
-          "Hello There"
+          <div className="user-photostream-grid-container">
+            
+            <p>Other stuff</p>
+
+            {photoStream}
+
+          </div>
         </div>
-      </>
+      </div>
     )
   }
 }

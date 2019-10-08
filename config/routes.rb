@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'static_pages#root' 
-  get '/api/photos', to: 'api/photos#all_photos', as: 'all_photos'
+  get '/api/photos', to: 'api/index#all_photos', as: 'all_photos'
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show] do

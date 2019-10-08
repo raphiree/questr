@@ -18,6 +18,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+    if @user
+      render 'api/users/show'
+    else
+      render json: ['User not found'], status: 422
+    end
+  end
+
   def search
     verified = User.verify_username(user_params[:username])
     if verified

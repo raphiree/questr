@@ -12,7 +12,7 @@ class Api::PhotosController < ApplicationController
   def index
     @photos = Photo.where(user_id: params[:user_id])
     if @photos
-      render json: @photos, status: 200
+      render 'api/photos/index'
     else
       render json: ['bad stuff']
     end

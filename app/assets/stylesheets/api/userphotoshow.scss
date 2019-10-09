@@ -1,0 +1,35 @@
+.photoview-wrapper {
+  background-color: #f3f5f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.photoview-display-wrap {
+  padding-top: 50px;
+  background-color: #212124;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoview-above-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoview-with-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoview-below-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

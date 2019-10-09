@@ -1,82 +1,77 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PhotoStreamPictures from './photo_stream_pictures';
+import UserFooter from './user_footer';
+import UserHeader from './user_header';
 
 class PhotoStream extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      owner: this.props.pageOwner,
-      photos: this.props.ownerPhotos,
+      logged: this.props.currentUser,
     }
   }
-
-  componentDidUpdate() {
-  }
-
+  
   componentDidMount() {
-    this.props.getUser(this.state.id);
     this.props.getUserPhotos(this.state.id);
+    this.props.getUser(this.state.id);
   }
 
   render() {
-    let user = this.props.currentUser || null;
-    let authOptions;
+    let ownerUsername;
+    if (this.props.pageOwner) { ownerUsername = this.props.pageOwner.username }
 
-    if (user) {
-      authOptions = (
-        <nav id="userAuth">
-          <button className="signup-blue">Sign Out</button>
-        </nav>
-      )
-    } else {
-      authOptions = (
-        <nav id="userAuth">
-          <Link to="/login"><div className="login">Log In</div></Link>
-          <Link to="/signup"><button className="signup-blue">Sign Up</button></Link>
-        </nav>
-      )  
-    }
+    const photoCount = Object.keys(this.props.ownerPhotos).length;
 
-    const photoStream = Object.keys(this.state.photos).map((idx, photo) => {
-      return (
-        <div class="user-photostream-grid-item">
-          <PhotoStreamPictures photo={this.state.photos[idx]} key={photo.id} />
-        </div>
-      )
-    })
+    let joinDate;
+    if (this.props.joinDate) {joinDate = `Joined ${this.props.joinDate.split("-")[0]}`}; 
+
+    const photoStream = Object.keys(this.props.ownerPhotos).map(idx => {
+        return ( 
+          <Link to={`/users/${this.props.pageOwner.id}/photos/${this.props.ownerPhotos[idx].id}`} key={idx} >
+            <PhotoStreamPictures 
+              owner={ownerUsername} 
+              photo={this.props.ownerPhotos[idx]}
+              photoCount={photoCount}
+              idx={idx} />
+          </Link>
+          )
+      })
 
     return (
-      <div id="photostream-wrapper">
-        <nav className="user-nav-bar">
-          <div className="user-nav-wrapper">
-            <Link to="/"><p id="user-nav-logo">questr</p></Link>
-            {authOptions}
-          </div>
-        </nav>
+      
+      <div className="photostream-wrapper">
+
+        <UserHeader currentUser={this.props.currentUser} />
+
         <div className="user-header-wrapper">
           <div className="user-header">
             <div className="user-avatar"></div>
-            <h1>{this.props.pageOwner}</h1>
+            <div className="user-textwrap">
+              <h1>{ownerUsername}</h1>
+              <div className="user-textwrap-info">
+                <h3>{joinDate}</h3>
+                <h3>{photoCount} photos</h3>
+              </div>
+            </div>
           </div>
         </div>
         <div className="user-header-bar-wrapper">
           <div className="user-header-bar">
-            <Link to={`/users/${this.state.id}/photos`}>
+            <Link to={`/users/${this.state.id}/photos` }>
               <div className="user-nav-button-photostream">Photostream</div>
             </Link>
           </div>
         </div>
         <div className="user-content-wrapper">
           <div className="user-photostream-grid-container">
-            
-            <p>Other stuff</p>
 
             {photoStream}
 
           </div>
         </div>
+        <UserFooter />
       </div>
     )
   }

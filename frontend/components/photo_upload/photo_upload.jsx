@@ -36,7 +36,7 @@ class PhotoUpload extends React.Component {
       imageData.append('num_views', 0);
       imageData.append('image', this.state.files[idx].file);
       this.props.uploadPhotos(imageData).then(
-        () => this.props.history.push('/users/:id/photos'));
+        () => this.props.history.push(`/users/${this.props.currentUser.id}/photos`));
     });
   }
 

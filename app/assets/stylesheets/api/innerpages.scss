@@ -1,6 +1,5 @@
-#photostream-wrapper {
+.photostream-wrapper {
   background-color: #f3f5f6;
-  height: 100%;
 }
 
 [class^="user-"] {
@@ -8,6 +7,9 @@
 }
 
 .user-nav-bar {
+  position: fixed;
+  top: 0px;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,9 +42,11 @@
 }
 
 .user-header-wrapper {
+  margin-top: 50px;
   width: 100%;
   min-height: 250px;  
   background-size: 100%;
+  background-size: cover;
   background-image: 
     linear-gradient(
       to bottom, 
@@ -59,7 +63,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-width: 80%;
+  width: 80%;
   margin-bottom: 20px;
 }
 
@@ -69,12 +73,30 @@
   background-image: image-url('icons/default_avatar.png');
   background-size: cover;
   border-radius: 50%;
-  margin-right: 15px;
+}
+
+.user-textwrap {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-textwrap-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .user-header h1 {
   color: white;
   font-size: 35px;
+}
+
+.user-header h3 {
+  color: white;
+  font-size: 16px;
+  padding-top: 6px;
+  padding-right: 30px;
 }
 
 .user-header-bar-wrapper {
@@ -111,6 +133,59 @@
   align-items: flex-start;
 }
 
+.user-photostream-grid-container {
+  width: 80%;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+  grid-template-rows: minmax(160px, 1fr);
+  grid-gap: 4px;
+}
+
+.user-photostream-grid {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.user-photostream-grid img {
+  object-fit : cover;
+  width: 100%;
+  height: 100%;
+}
+
+.user-photostream-grid img:hover {
+  opacity: 0.0;
+}
+
+.user-photostream-grid:hover > .flavorText {
+  display: block;
+}
+
+.flavorText {
+  display: none;
+  position: absolute;
+  bottom: 12px;
+  left: 10px;
+}
+
+.flavorText h2 {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.flavorText p {
+  color: #aaaaaa;
+  font-size: 12px;
+}
+
+.flavorText p:hover {
+  color: white;
+  font-size: 12px;
+  transition: 0.5s;
+}
+
 .signup-blue {
   background-color: rgb(18, 143, 220);
   color: white;
@@ -124,4 +199,78 @@
 
 #userAuth .login:hover {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.user-footer-wrapper {
+  margin-top: 25px;
+  width: 100%;
+  height: 110px;
+  background-color: #212124;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-footer {
+  width: 80%;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-footer-nav {
+  min-height: 48px;
+  border-bottom: 1px solid #38383a;
+  width: 1060px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-footer-nav a {
+  color: white;
+  font-size: 13px;
+}
+
+.user-footer-nav a:hover {
+  color: #898989;
+}
+
+.user-footer-links {
+  min-height: 61px;
+  width: 1060px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #898989;
+  font-size: 13px;
+}
+
+.user-footer-links a{
+  width: 150px;
+  color: #898989
+}
+
+.user-footer-links a:hover{
+  color: white;
+  transition: 0.5s;
+}
+
+.externalIcons {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.footer-exicons {
+  width: 20px;
+  opacity: 0.5;
+}
+
+.footer-exicons:hover {
+  opacity: 1;
 }

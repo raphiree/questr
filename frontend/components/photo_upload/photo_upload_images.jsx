@@ -13,13 +13,11 @@ class PhotoUploadImages extends React.Component {
   
   revealXbutton(fileId) {
     let xbutton = document.getElementById(`removeImage-${fileId}`);
-    debugger
     xbutton.classList.remove('hidden');
   }
 
   hideXbutton(fileId) {
     let xbutton = document.getElementById(`removeImage-${fileId}`);
-    debugger
     xbutton.classList.add('hidden');
   }
 

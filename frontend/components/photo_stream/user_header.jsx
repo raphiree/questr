@@ -9,6 +9,7 @@ const UserHeader = (currentUser) => {
   if (user.currentUser !== undefined) {
     authOptions = (
       <nav id="userAuth">
+        <p id="white-link"> <Link to={`/users/${user.currentUser.id}/photos`} >Your Photostream</Link> </p>
         <button className="signup-blue"
           onClick={() => logoutUser(user)}>Sign Out</button>
       </nav>

@@ -1,0 +1,45 @@
+.photoIndex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.photoIndex-grid-container {
+  margin-top: 50px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, auto));
+  grid-gap: 20px;
+
+}
+
+// [class^="photoIndex-grid"] {
+//   font-size: 50px;
+// }
+
+[class^="photoIndex-grid-"] img {
+  width: 480px;
+  object-fit: cover;
+}
+
+.image-div-grid-1 {
+  grid-row-end: span 1; 
+}
+
+.image-div-grid-2 {
+  grid-row-end: span 2; 
+}
+
+.image-div-grid-3 {
+  grid-row-end: span 3; 
+}
+
+.image-div-grid-4 {
+  grid-row-end: span 4; 
+}
+
+.image-div-grid-5 {
+  grid-row-end: span 5; 
+}

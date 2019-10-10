@@ -21,6 +21,15 @@ export const getUserPhotos = id => {
   )
 }
 
+export const getAllPhotos = () => {
+  return (
+    $.ajax({
+      method: 'GET',
+      url: `api/photos`,
+    })
+  )
+}
+
 export const getUser = id => {
   const user_id = parseInt(id);
   return (

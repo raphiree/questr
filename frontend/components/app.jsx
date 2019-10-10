@@ -16,7 +16,7 @@ const App = () => {
       <UnloggedRoute exact path="/" component={GreetingsContainer} />
       <UnloggedRoute exact path="/login" component={LoginFormContainer} />
       <UnloggedRoute exact path="/signup" component={SignupFormContainer} />
-      <LoggedRoute path="/photos" component={PhotoIndexContainer} />
+      <Route path="/photos" component={PhotoIndexContainer} />
       <LoggedRoute path="/upload" component={PhotoUploadContainer} />
       <Route exact path="/users/:id/photos" component={PhotoStreamContainer} />
       <Route exact path="/users/:user_id/photos/:photo_id" component={PhotoViewContainer} />

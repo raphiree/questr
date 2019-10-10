@@ -7,7 +7,6 @@ const UserHeader = (currentUser) => {
   let user = currentUser;
 
   if (user.currentUser !== undefined) {
-    console.log(user);
     authOptions = (
       <nav id="userAuth">
         <button className="signup-blue"
@@ -15,7 +14,6 @@ const UserHeader = (currentUser) => {
       </nav>
     )
   } else {
-    console.log(user);
     authOptions = (
       <nav id="userAuth">
         <Link to="/login"><div className="login">Log In</div></Link>

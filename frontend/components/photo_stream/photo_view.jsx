@@ -24,20 +24,57 @@ class PhotoView extends React.Component {
     this.props.getUser(this.state.ownerId);
   }
 
-  componentDidUpdate() {
+  getThisPhoto() {
 
   }
-  
+
   render() {
 
     const owner = this.state.owner;
     const allPhotos = this.props.ownerPhotos;
 
+    const prevButton = Object.keys(allPhotos).map(idx => {
+      if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
+        let prevURL;
+        if (parseInt(idx) === 0) {
+          prevURL = Object.keys(allPhotos).length - 1;
+        } else {
+          prevURL = idx - 1;
+        }
+        return (
+          <Link to={`/users/${this.state.ownerId}/photos/${allPhotos[prevURL].id}`} key={idx}>
+            <div className="directional-l"><div className="box"></div></div>
+          </Link>
+        )
+      }
+    })
+
+    const nextButton = Object.keys(allPhotos).map(idx => {
+      if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
+        let nextURL;
+        if (parseInt(idx) === parseInt(Object.keys(allPhotos).length - 1)) {
+          nextURL = 0;
+        } else {
+          nextURL = parseInt(idx) + 1;
+        }
+        return (
+          <Link to={`/users/${this.state.ownerId}/photos/${allPhotos[nextURL].id}`} key={idx}>
+            <div className="directional-r"><div className="box"></div></div>
+          </Link>
+        )
+      }
+    })
+
     const photoDisplay = Object.keys(allPhotos).map(idx => {
       if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
-
+        
+        let imgStyle = {
+          backgroundColor: '',
+          minHeight: '706px',
+        }
+        
         return (
-          <img src={allPhotos[idx].image_url} key={idx} />
+          <div style={imgStyle} key={idx}><div className="box"><img src={allPhotos[idx].image_url} /></div></div>
         )
       }
     })
@@ -57,13 +94,27 @@ class PhotoView extends React.Component {
     })
 
     const photoArray = Object.keys(allPhotos).map(idx => {
+
+      let boxStyle 
+      if (parseInt(allPhotos[idx].id) === parseInt(this.props.match.params.photo_id)) {
+        boxStyle = {
+          backgroundImage: `url(${allPhotos[idx].image_url})`,
+          backgroundSize: 'cover',
+          border: `1px #FFFFFF solid`,
+        }
+      } else {
+        boxStyle = {
+          backgroundImage: `url(${allPhotos[idx].image_url})`,
+          backgroundSize: 'cover',
+        }
+      }
+
       return (
-        <div className="thumbnail-list">
-          <Link to={`/users/${this.state.ownerId}/photos/${allPhotos[idx].id}`} key={allPhotos[idx].id}>
-            <img className="photoview-thumbnails"
-              src={allPhotos[idx].image_url} />
-          </Link>
-        </div>
+        <Link to={`/users/${this.state.ownerId}/photos/${allPhotos[idx].id}`} key={allPhotos[idx].id}>
+          <div className="thumbnail-list" style={boxStyle}>
+              <div className="box"></div>
+          </div>
+        </Link >
         )
     })
 
@@ -82,15 +133,22 @@ class PhotoView extends React.Component {
             </Link>
           </div>
 
-          {photoDisplay}
-
+          <div className="photoview-display-center">
+            {prevButton}
+            {photoDisplay}
+            {nextButton}
+            
+          </div>
+          
           <div className="photoview-display-below">
-            {/* <div className="photoview-display">
-              {photoArray}
-            </div> */}
           </div>
 
           <div className="photoview-form-container">
+            
+            <div id="arrayBar">
+              {photoArray}
+            </div>
+
             <div className="photoview-form-wrapper">
               <div className="user-avatar"></div>
               {photoDesc}
@@ -98,6 +156,8 @@ class PhotoView extends React.Component {
           </div>
 
         </div>
+
+        {prevButton}
 
         <UserFooter />
 

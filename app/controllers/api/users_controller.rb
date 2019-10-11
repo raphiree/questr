@@ -18,6 +18,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+    if @users
+      render 'api/users/index'
+    else
+      render json: ['Unable to fetch userlist']
+    end
+  end
+
   def show
     @user = User.find_by(id: params[:id])
     if @user

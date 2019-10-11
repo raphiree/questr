@@ -11,7 +11,7 @@ class Api::PhotosController < ApplicationController
 
   def index
     if params[:user_id]
-      @photos = Photo.where(user_id: params[:user_id])
+      @photos = Photo.order(created_at: :desc).where(user_id: params[:user_id])
       if @photos
         render 'api/photos/index'
       else

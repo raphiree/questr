@@ -1,5 +1,6 @@
 json.id photo.id
 json.user_id photo.user_id
+json.username photo.user.username
 json.image_url url_for(photo.image) if photo.image.attached?
 json.title photo.title
 json.caption photo.caption

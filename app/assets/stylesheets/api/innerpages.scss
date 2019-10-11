@@ -19,6 +19,27 @@
   color: white;
 }
 
+.user-nav-bar2 {
+  position: fixed;
+  top: 50px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 50px;
+  background-color: rgb(255, 255, 255); 
+  color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgba(138, 138, 138, 0.3);
+}
+
+#white {
+  color: white;
+  padding-left: 15px;
+  margin-top: 2px;
+  font-size: 13px;
+}
+
 .user-nav-wrapper {
   display: flex;
   justify-content: space-between;
@@ -199,6 +220,20 @@
 
 #userAuth .login:hover {
   color: rgba(255, 255, 255, 0.8);
+}
+
+#icon-cloud {
+  color: white;
+  font-size: 35px;
+  padding-right: 20px;
+  margin-top: 2px;
+}
+
+.user-nav-left-wrapper {
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .user-footer-wrapper {

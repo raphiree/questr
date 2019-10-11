@@ -39,3 +39,21 @@ export const getUser = id => {
     })
   )
 }
+
+export const getAllUsers = () => {
+  return (
+    $.ajax({
+      method: 'GET',
+      url: `api/users`,
+    })
+  )
+}
+
+export const getAPhoto = (user_id, photo_id) => {
+  return (
+    $.ajax({
+      method: 'GET',
+      url: `api/users/${user_id}/photos/${photo_id}`
+    })
+  )
+}

@@ -7,7 +7,7 @@ class Photo < ApplicationRecord
 
   has_one_attached :image
 
-  belongs_to :users,
+  belongs_to :user,
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :User

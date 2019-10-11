@@ -3,43 +3,117 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background-color:#f3f5f6;
+}
+
+.photoIndex-nav {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: center;
 }
 
 .photoIndex-grid-container {
-  margin-top: 50px;
+  margin-top: 100px;
+  padding-top: 50px;
   width: 90%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(200px, auto));
-  grid-gap: 20px;
-
+  grid-template-rows: repeat(auto-fill, minmax(50px, auto));
+  grid-gap: 15px;
 }
 
-// [class^="photoIndex-grid"] {
-//   font-size: 50px;
-// }
+[class^="photoIndex-"] {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.photoIndex-username {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.photoIndex-featured {
+  font-size: 12px;
+}
 
 [class^="photoIndex-grid-"] img {
   width: 480px;
   object-fit: cover;
+  opacity: 0.8;
 }
 
-.image-div-grid-1 {
-  grid-row-end: span 1; 
+[class^="photoIndex-grid-"] img:hover {
+  width: 480px;
+  object-fit: cover;
+  opacity: 1.0;
+  transition: 0.2s;
 }
 
-.image-div-grid-2 {
-  grid-row-end: span 2; 
+.photoIndex-grid-user-wrapper {
+  background-color:white;
+  min-height: 64px;
+  width: 480px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.image-div-grid-3 {
-  grid-row-end: span 3; 
+.photoIndex-grid-info-wrapper {
+  background-color:white;
+  min-height: 96px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
-.image-div-grid-4 {
-  grid-row-end: span 4; 
+.photoIndex-title {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 16px;
+}
+.photoIndex-caption {
+  font-size: 12px;
+  margin-left: 16px;
 }
 
-.image-div-grid-5 {
-  grid-row-end: span 5; 
+.photoIndex-grid-user-wrapper .user-avatar {
+  margin-left: 16px;
+  margin-right: 16px;
+  width: 32px;
+  height: 32px;
+}
+
+.photoIndex-info-top {
+  width: 480px;
+  min-height: 48px;
+  max-height: 48px;
+  font-size: 13px;
+  margin-left: 16px;
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: bold;
+}
+
+.photoIndex-info-bot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px 0px 15px;
+  width: 450px;
+  min-height: 48px;
+  max-height: 49px;
+  border-top: 1px solid rgba(110, 110, 110, 0.3);
+  font-size: 12px;
+  color: rgba(90, 90, 90, 0.623);
+}
+
+.photoIndex-main-grid:hover {
+  box-shadow: 0px 0px 20px 3px #bbbbbb;
+  transition: 0.3s;
 }

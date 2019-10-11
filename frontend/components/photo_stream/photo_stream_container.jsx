@@ -6,7 +6,7 @@ import { getUser, getUserPhotos } from '../../actions/photo_actions';
 const mapStateToProps = (state) => {
   return ({
     currentUser: state.entities.users[state.session.id],
-    ownerPhotos: state.entities.photos,
+    ownerPhotos: state.entities.ownerPhotos,
     pageOwner: state.entities.owner,
     joinDate: state.entities.owner.created_at,
   })

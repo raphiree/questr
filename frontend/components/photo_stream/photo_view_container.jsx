@@ -6,11 +6,10 @@ import { getUser, getUserPhotos } from '../../actions/photo_actions';
 const mapStateToProps = (state, ownProps) => {
   return ({
     currentUser: state.entities.users[state.session.id],
-    ownerPhotos: state.entities.photos,
+    ownerPhotos: state.entities.ownerPhotos,
     pageOwner: state.entities.owner.username,
     photoId: ownProps.match.params.photo_id,
     ownerId: ownProps.match.params.user_id,
-
   })
 }
 

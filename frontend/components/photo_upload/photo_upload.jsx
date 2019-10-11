@@ -26,6 +26,9 @@ class PhotoUpload extends React.Component {
   submitAllPhotos() {
     const currentState = this.state;
     Array.from(currentState.titles).map(title => {
+
+      let numView = Math.round(Math.random() * 30);
+
       let idx = title.idx;
       let imageData = new FormData();
       (title.value === "") ? title.value = "Untitled" : title.value;
@@ -33,7 +36,7 @@ class PhotoUpload extends React.Component {
       (currentState.captions[idx].value === "") ? currentState.captions[idx].value = "No Description" : currentState.captions[idx].value;
       imageData.append('caption', this.state.captions[idx].value);
       imageData.append('user_id', this.props.currentUser.id);
-      imageData.append('num_views', 0);
+      imageData.append('num_views', numView);
       imageData.append('image', this.state.files[idx].file);
       this.props.uploadPhotos(imageData).then(
         () => this.props.history.push(`/users/${this.props.currentUser.id}/photos`));

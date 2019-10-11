@@ -67,9 +67,39 @@ let gridStyle = {
 
 This method divides the entire page into a series of CSS grids, uses Javascript to calculate the dimensions of the image, then sets the necessary row span as it's being loaded.
 
-|  |
+| Two-step login process |
 |---|
 
+Questr's login process sends two requests to the back-end, first to verify the existence of the Username, and then to verify the encrypted password.
+```    
+if (this.props.verified === true) {
+  formRender = (
+    <form onSubmit={this.signinUser} id="userForm">
+```
+
+| Group upload functionality |
+|---|
+
+Users are able to upload multiple photos at the same time due to each item being stored in the page's component state. Any changes made during the preview stage is rendered from the state, before images are finalized and uploaded.
+
+```  
+handleFile(e) {
+  let newState = this.state;
+  const uploadFiles = e.currentTarget.files;
+  
+  let i = 0;
+  let k = 0;
+  while (i < uploadFiles.length) {
+    if (newState.files[k] !== undefined) {
+      k++;
+    } else {
+      newState.files[k] = {
+        idx: k,
+        file: uploadFiles[i],
+        url: URL.createObjectURL(uploadFiles[i]),
+      }
+```
+The nested loop keeps the state's array index and array of files to be uploaded in independent order.
 
 ## Known Issues
 1. Index page renders images before styling can be applied with onLoad

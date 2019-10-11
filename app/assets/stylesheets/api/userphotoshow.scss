@@ -220,6 +220,7 @@
 
 .directional-l {
   background-image: image-url('icons/nav_arrows.png');
+  background-repeat: no-repeat;
   width:15px;
   height:36px;
   background-position: 15px 0px;
@@ -233,4 +234,5 @@
   height:36px;
   position:absolute;
   right: 25px;
+  background-repeat: no-repeat;
 }

@@ -17,9 +17,9 @@ class PhotoIndex extends React.Component {
   render() {
     const photoCell = Object.keys(this.props.photos).map(photoIdx => {
       if (photoIdx < this.state.display) {
-        let testImg = new Image();
-        testImg.src = this.props.photos[photoIdx].image_url;
-        let rowSpan = (Math.ceil([testImg.height * 480 / testImg.width / 50]));
+        let displayImage = new Image();
+        displayImage.src = this.props.photos[photoIdx].image_url;        
+        let rowSpan = (Math.ceil([displayImage.height * 480 / displayImage.width / 50]));
         let gridStyle = { 
           gridRowEnd: `span ${rowSpan}`,
           display: 'flex',
@@ -42,7 +42,7 @@ class PhotoIndex extends React.Component {
                 <p className="photoIndex-featured">Carefully Curated</p>
               </div>
             </div>
-            <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos/${this.props.photos[photoIdx].id}`}><img src={testImg.src}
+            <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos/${this.props.photos[photoIdx].id}`}><img src={displayImage.src}
               className="image" /></Link>
             <div className="photoIndex-grid-info-wrapper">
               <div className="photoIndex-info-top">

@@ -30,7 +30,7 @@ class Api::PhotosController < ApplicationController
   private
 
   def photo_params
-    params.permit(:user_id, :image, :title, :caption, :num_views, :height, :width)
+    params.permit(:user_id, :image, :title, :caption, :num_views)
   end
 
 end

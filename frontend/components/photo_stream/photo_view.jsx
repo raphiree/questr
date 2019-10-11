@@ -108,7 +108,6 @@ class PhotoView extends React.Component {
           backgroundSize: 'cover',
         }
       }
-
       return (
         <Link to={`/users/${this.state.ownerId}/photos/${allPhotos[idx].id}`} key={allPhotos[idx].id}>
           <div className="thumbnail-list" style={boxStyle}>
@@ -122,7 +121,7 @@ class PhotoView extends React.Component {
     return (
       <div className="photoview-wrapper">
 
-        <UserHeader currentUser={this.props.currentUser} />
+        <UserHeader currentUser={this.props.currentUser} logoutUser={this.props.logoutUser } />
 
         <div className="photoview-display-main" >
           
@@ -137,7 +136,6 @@ class PhotoView extends React.Component {
             {prevButton}
             {photoDisplay}
             {nextButton}
-            
           </div>
           
           <div className="photoview-display-below">

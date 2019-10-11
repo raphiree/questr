@@ -62,9 +62,9 @@ export const loginUser = formUser => dispatch => {
 };
 
 export const logoutUser = formUser => dispatch => {
-  logout(formUser).then(
-    user => dispatch(logoutCurrentUser(user))
-    );
+  debugger
+  logout(formUser).then((user) => (dispatch(logoutCurrentUser(user), error=>(console.log("hi"))))
+  )
 };
 
 export const clearError = () => dispatch => {

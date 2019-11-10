@@ -20,26 +20,32 @@ class PhotoUpload extends React.Component {
     this.submitAllPhotos = this.submitAllPhotos.bind(this);
   }
 
-  componentDidUpdate() {
-  }
-
   submitAllPhotos() {
     const currentState = this.state;
-    Array.from(currentState.titles).map(title => {
+    
+    let countToBeUploaded = Array.from(currentState.titles).length;
+    let uploaded = 0;
 
+    for (let i = 0; i < Array.from(currentState.titles).length; i++) {
+      
+      // Just to populate some numbers. Remove on final version
       let numView = Math.round(Math.random() * 30);
 
-      let idx = title.idx;
+      let idx = currentState.titles[i].idx;
       let imageData = new FormData();
-      (title.value === "") ? title.value = "Untitled" : title.value;
-      imageData.append('title', title.value);
+      (currentState.titles[i].value === "") ? currentState.titles[i].value = "Untitled" : currentState.titles[i].value;
+      imageData.append('title', currentState.titles[i].value);
       (currentState.captions[idx].value === "") ? currentState.captions[idx].value = "No Description" : currentState.captions[idx].value;
       imageData.append('caption', this.state.captions[idx].value);
       imageData.append('user_id', this.props.currentUser.id);
       imageData.append('num_views', numView);
       imageData.append('image', this.state.files[idx].file);
-      this.props.uploadPhotos(imageData).then(setTimeout(
-        () => this.props.history.push(`/users/${this.props.currentUser.id}/photos`), 500))})}
+      this.props.uploadPhotos(imageData).then(() => { uploaded++ })
+    }
+    if (uploaded + 1 === countToBeUploaded) {
+      this.props.history.push(`/users/${this.props.currentUser.id}/photos`)
+    }
+  }
 
 
   handleFile(e) {

@@ -12,4 +12,14 @@ class Photo < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
     
+  has_many :comments,
+    primary_key: :id,
+    foreign_key: :photo_id,
+    class_name: :Comment
+
+  has_many :favorites,
+    primary_key: :id,
+    foreign_key: :photo_id,
+    class_name: :Favorite
+
 end

@@ -38,7 +38,9 @@ class PhotoIndex extends React.Component {
             <div className="photoIndex-grid-user-wrapper">
               <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos`}><div className="user-avatar"></div></Link>
               <div>
-                <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos`}><p className="photoIndex-username">{this.props.photos[photoIdx].username}</p></Link>
+                <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos`}>
+                  <p className="photoIndex-username">{this.props.photos[photoIdx].username}</p>
+                </Link>
                 <p className="photoIndex-featured">Carefully Curated</p>
               </div>
             </div>
@@ -49,7 +51,8 @@ class PhotoIndex extends React.Component {
                 <Link to={`/users/${this.props.photos[photoIdx].user_id}/photos/${this.props.photos[photoIdx].id}`}>{this.props.photos[photoIdx].title}</Link>
               </div>
               <div className="photoIndex-info-bot">
-                <p>WIP Views & Comments {this.props.photos[photoIdx].num_views} views</p>
+                <p>{this.props.photos[photoIdx].num_views}</p>
+                <i class="material-icons">star_border</i>
               </div>
             </div>
           </div>
@@ -71,8 +74,6 @@ class PhotoIndex extends React.Component {
 
           <div className="photoIndex-grid-container">
             {photoCell}
-
-
           </div>
 
         </div>

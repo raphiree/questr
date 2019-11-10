@@ -1,16 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FavButton from './photo_favs';
 
 class PhotoCell extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      favorite: false,
+    }
+    this.setFavorite = this.setFavorite.bind(this);
+  }
+
+  setFavorite() {
+    // console.log(this)
+    let favData = new FormData();
+    favData.append('user_id', this.props.currentUser.id);
+    favData.append('photo_id', this.props.photo.id);
+    this.props.favoritePhoto(favData)
   }
 
   render () {
     const photo = this.props.photo
+    let displayImage = new Image();
+    displayImage.src = photo.image_url;
+    let rowSpan = (Math.ceil([displayImage.height * 480 / displayImage.width / 50]));
+    let gridStyle = {
+      gridRowEnd: `span ${rowSpan}`,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: '#111111',
+      minWidth: '480px',
+      maxWidth: '480px',
+      backgroundImage: `image-url(${photo.image_url})`,
+      backgroundSize: `cover`,
+    }
 
     return (
-      <div className="photoIndex-main-grid">
+      <div className="photoIndex-main-grid" style={gridStyle} >
         <div className="photoIndex-grid-user-wrapper">
           <Link to={`/users/${photo.user_id}/photos`}><div className="user-avatar"></div></Link>
           <div>
@@ -20,7 +48,7 @@ class PhotoCell extends React.Component {
             <p className="photoIndex-featured">Carefully Curated</p>
           </div>
         </div>
-        <Link to={`/users/${photo.user_id}/photos/${photo.id}`}><img src={this.props.displayImage.src}
+        <Link to={`/users/${photo.user_id}/photos/${photo.id}`}><img src={displayImage.src}
           className="image" /></Link>
         <div className="photoIndex-grid-info-wrapper">
           <div className="photoIndex-info-top">
@@ -28,7 +56,9 @@ class PhotoCell extends React.Component {
           </div>
           <div className="photoIndex-info-bot">
             <p>{photo.num_views}</p>
-            <div className="material-icons">star_border</div>
+            <div className="favStar" onClick={this.setFavorite}>
+              <FavButton fav={this.state.favorite} />
+            </div>
           </div>
         </div>
       </div>

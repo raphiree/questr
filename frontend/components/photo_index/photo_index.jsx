@@ -12,36 +12,21 @@ class PhotoIndex extends React.Component {
       loaded: false,
     }
     this.props.getAllPhotos();
+    this.favoritePhoto = this.props.favoritePhoto.bind(this);
   }
 
   render() {
     const photoCell = Object.keys(this.props.photos).map(photoIdx => {
       if (photoIdx < this.state.display) {
         const photo = this.props.photos[photoIdx];
-        let displayImage = new Image();
-        displayImage.src = photo.image_url;
-        let rowSpan = (Math.ceil([displayImage.height * 480 / displayImage.width / 50]));
-        let gridStyle = { 
-          gridRowEnd: `span ${rowSpan}`,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: '#111111',
-          minWidth: '480px',
-          maxWidth: '480px',
-          backgroundImage: `image-url(${photo.image_url})`,
-          backgroundSize: `cover`,
-        }
-
         return (
           <PhotoCell
             photo={photo}
-            displayImage={displayImage} 
-            style={gridStyle} 
-            key={photo.id} />
-        )
-      }
+            key={photo.id} 
+            currentUser={this.props.currentUser}
+            favoritePhoto={this.favoritePhoto}
+          />
+        )}
     })
 
     return (
@@ -55,7 +40,6 @@ class PhotoIndex extends React.Component {
           </div>
         </div>
         <div className="photoIndex">
-
           <div className="photoIndex-grid-container">
             {photoCell}
           </div>

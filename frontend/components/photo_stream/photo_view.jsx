@@ -16,7 +16,6 @@ class PhotoView extends React.Component {
       nextIdx: "",
       prevIdx: "",
     }
-    console.log(this.state.photoId)
   }
 
   componentDidMount() {

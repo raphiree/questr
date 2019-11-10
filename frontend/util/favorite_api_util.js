@@ -5,6 +5,8 @@ export const favoritePhoto = formData => {
       method: 'POST',
       url: `api/users/${user_id}/favorites`,
       data: formData,
+      contentType: false,
+      processData: false,
     })
   )
 }

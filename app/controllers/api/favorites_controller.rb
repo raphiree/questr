@@ -3,7 +3,7 @@ class Api::FavoritesController < ApplicationController
   def create
     @favorite = Favorite.new(fav_params)
     if @favorite.save
-      render json: ['Favorited']
+      render json: @favorite
     else
       render json: ['Favorite Failed']
     end

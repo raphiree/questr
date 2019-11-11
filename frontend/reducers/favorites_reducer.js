@@ -5,7 +5,7 @@ export default (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_MY_FAVS:
-      return Object.assign({}, newState, action.user_id);
+      return Object.assign({}, newState, action.favorites);
     default:
       return oldState;
   };

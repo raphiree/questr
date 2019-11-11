@@ -8,11 +8,11 @@ class FavButton extends React.Component {
   render () {
     if (this.props.fav === false) {
       return (
-        <i className="material-icons">star_border</i>
+        <i className="material-icons" onClick={this.props.setFavorite}>star_border</i>
       )
     } else {
       return (
-        <i className="material-icons">star</i>
+        <i className="material-icons" onClick={this.props.removeFavorite}>star</i>
       )
     }
   }

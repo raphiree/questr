@@ -9,14 +9,27 @@ class PhotoCell extends React.Component {
       favorite: false,
     }
     this.setFavorite = this.setFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   setFavorite() {
-    // console.log(this)
     let favData = new FormData();
     favData.append('user_id', this.props.currentUser.id);
     favData.append('photo_id', this.props.photo.id);
+    let newState = this.state;
     this.props.favoritePhoto(favData)
+    newState.favorite = true;
+    this.setState(newState);
+  }
+
+  removeFavorite() {
+    let favData = new FormData();
+    favData.append('user_id', this.props.currentUser.id);
+    favData.append('photo_id', this.props.photo.id);
+    let newState = this.state;
+    this.props.removePhoto(favData)
+    newState.favorite = false;
+    this.setState(newState);
   }
 
   render () {
@@ -56,8 +69,12 @@ class PhotoCell extends React.Component {
           </div>
           <div className="photoIndex-info-bot">
             <p>{photo.num_views}</p>
-            <div className="favStar" onClick={this.setFavorite}>
-              <FavButton fav={this.state.favorite} />
+            <div className="favStar">
+              <FavButton 
+                fav={this.state.favorite} 
+                setFavorite={this.setFavorite}
+                removeFavorite={this.removeFavorite}
+                />
             </div>
           </div>
         </div>

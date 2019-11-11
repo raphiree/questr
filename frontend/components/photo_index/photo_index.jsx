@@ -12,6 +12,7 @@ class PhotoIndex extends React.Component {
       loaded: false,
     }
     this.props.getAllPhotos();
+    this.props.getAllFavorites();
     this.favoritePhoto = this.props.favoritePhoto.bind(this);
   }
 

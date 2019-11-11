@@ -6,7 +6,7 @@ class PhotoCell extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      favorite: false,
+      favorite: this.props.favorited,
     }
     this.setFavorite = this.setFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
@@ -25,9 +25,9 @@ class PhotoCell extends React.Component {
   removeFavorite() {
     let favData = new FormData();
     favData.append('user_id', this.props.currentUser.id);
-    favData.append('photo_id', this.props.photo.id);
+    favData.append('favorite_id', this.props.favId);
     let newState = this.state;
-    this.props.removePhoto(favData)
+    this.props.unfavoritePhoto(favData)
     newState.favorite = false;
     this.setState(newState);
   }

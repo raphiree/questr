@@ -10,7 +10,7 @@ const entitiesReducer = combineReducers({
   owner: OwnersReducer,
   photos: PhotosReducer,
   ownerPhotos: OwnerPhotoReducer,
-  ownerFavs: FavoritesReducer,
+  userFavorites: FavoritesReducer,
 });
 
 export default entitiesReducer;

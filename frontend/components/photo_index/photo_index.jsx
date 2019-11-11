@@ -8,24 +8,38 @@ class PhotoIndex extends React.Component {
     super(props);
     this.state = {
       currentUser: this.props.currentUser,
-      display: 20,
+      display: 10,
       loaded: false,
     }
+
     this.props.getAllPhotos();
-    this.props.getAllFavorites();
+    if (this.state.currentUser) {
+      this.props.getAllFavorites(this.state.currentUser.id);
+    }
     this.favoritePhoto = this.props.favoritePhoto.bind(this);
+    this.unfavoritePhoto = this.props.unfavoritePhoto.bind(this);
   }
 
   render() {
+    const favArray = {}
+    Object.keys(this.props.userFavorites).map(favId => {
+      favArray[this.props.userFavorites[favId].photo_id] = this.props.userFavorites[favId].id
+    })
+    
     const photoCell = Object.keys(this.props.photos).map(photoIdx => {
       if (photoIdx < this.state.display) {
         const photo = this.props.photos[photoIdx];
+        let favorited;
+        (Object.keys(favArray).includes(photo.id.toString())) ? favorited = true : favorited = false;
         return (
           <PhotoCell
             photo={photo}
             key={photo.id} 
             currentUser={this.props.currentUser}
             favoritePhoto={this.favoritePhoto}
+            unfavoritePhoto={this.unfavoritePhoto}
+            favorited={favorited}
+            favId={favArray[photo.id]}
           />
         )}
     })

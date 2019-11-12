@@ -30,6 +30,16 @@ export const getAllPhotos = () => {
   )
 }
 
+export const loadMorePhotos = (displayed) => {
+  return (
+    $.ajax({
+      method: 'GET',
+      url: `api/photos`,
+      data: {offset: displayed},
+    })
+  )
+}
+
 export const getUser = id => {
   const user_id = parseInt(id);
   return (

@@ -1,6 +1,7 @@
 import * as PhotoAPIUtil from '../util/photo_api_util';
 
 export const RECEIVE_INDEXED_IMAGES = 'RECEIVE_INDEXED_IMAGES';
+export const RECEIVE_NEXT_PHOTOS = 'RECEIVE_NEXT_PHOTOS';
 export const RECEIVE_USER_IMAGES = 'RECEIVE_USER_IMAGES';
 export const RECEIVE_PAGE_OWNER = 'RECEIVE_PAGE_OWNER';
 export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
@@ -15,6 +16,13 @@ const receiveUploadedImages = photos => {
 const receiveAllImages = photos => {
   return ({
     type: RECEIVE_INDEXED_IMAGES,
+    photos
+  })
+}
+
+const receiveNextPhotos = photos => {
+  return ({
+    type: RECEIVE_NEXT_PHOTOS,
     photos
   })
 }
@@ -44,6 +52,13 @@ export const getAllPhotos = () => dispatch => {
   return (
     PhotoAPIUtil.getAllPhotos().then(
       photos => dispatch(receiveAllImages(photos))
+  ));
+}
+
+export const loadMorePhotos = displayed => dispatch => {
+  return (
+    PhotoAPIUtil.loadMorePhotos(displayed).then(
+      photos => dispatch(receiveNextPhotos(photos))
   ));
 }
 

@@ -62,7 +62,6 @@ export const loginUser = formUser => dispatch => {
 };
 
 export const logoutUser = formUser => dispatch => {
-  debugger
   logout(formUser).then((user) => (dispatch(logoutCurrentUser(user), error=>(console.log("hi"))))
   )
 };

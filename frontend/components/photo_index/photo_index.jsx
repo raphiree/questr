@@ -9,7 +9,7 @@ class PhotoIndex extends React.Component {
     this.state = {
       currentUser: this.props.currentUser,
       display: 10,
-      loaded: false,
+      loading: false,
     }
 
     this.props.getAllPhotos();
@@ -18,7 +18,37 @@ class PhotoIndex extends React.Component {
     }
     this.favoritePhoto = this.props.favoritePhoto.bind(this);
     this.unfavoritePhoto = this.props.unfavoritePhoto.bind(this);
+    this.loadMorePhotos = this.loadMorePhotos.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
+
+  componentDidUpdate() {
+    window.addEventListener("scroll", e=> {
+      this.handleScroll(e)
+    })
+  }
+
+  handleScroll() {
+    const cells = document.getElementsByClassName('photoIndex-main-grid');
+    const lastCell = cells[cells.length - 1];
+    if (this.state.loading === false && lastCell.offsetTop < (window.pageYOffset + window.innerHeight)) {
+      this.loadMorePhotos();
+    }
+  }
+
+  loadMorePhotos() {
+    this.props.loadMorePhotos(this.state.display).then(
+      setTimeout(() => {
+        let newState = this.state;
+        this.state.loading = false;
+        this.setState(newState)
+      }, 5000));
+    let newState = this.state;
+    newState.display += 10;
+    newState.loading = true;
+    this.setState(newState)
+  }
+
 
   render() {
     const favArray = {}
@@ -58,7 +88,6 @@ class PhotoIndex extends React.Component {
           <div className="photoIndex-grid-container">
             {photoCell}
           </div>
-
         </div>
       </>
     )

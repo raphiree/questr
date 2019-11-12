@@ -6,7 +6,6 @@ export default (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_MY_FAVS:
       newState = Object.assign({}, newState, action.favorites);
-      debugger
       return newState;
     case RECEIVE_FAVORITE:
       return Object.assign({}, newState, action.favorite);

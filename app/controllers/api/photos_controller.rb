@@ -11,14 +11,21 @@ class Api::PhotosController < ApplicationController
 
   def index
     if params[:user_id]
-      @photos = Photo.order(created_at: :desc).where(user_id: params[:user_id])
+      @photos = Photo.where(user_id: params[:user_id]).order(created_at: :desc)
       if @photos
         render 'api/photos/index'
       else
         render json: ['Unable to retrieve user images']
       end
+    elsif params[:offset]
+      @photos = Photo.order(created_at: :desc).offset(params[:offset]).limit(10)
+      if @photos
+        render 'api/photos/index'
+      else
+        render json: ['Unable to retreive images from database']
+      end
     else
-      @photos = Photo.order(created_at: :desc).all
+      @photos = Photo.order(created_at: :desc).limit(10)
       if @photos
         render 'api/photos/index'
       else

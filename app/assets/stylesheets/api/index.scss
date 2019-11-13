@@ -113,6 +113,16 @@
   color: rgba(90, 90, 90, 0.623);
 }
 
+.photoIndex-info-bot div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoIndex-info-bot div p{
+  padding-right: 10px;
+}
+
 .photoIndex-info-bot .material-icons {
   cursor: pointer;
   font-size: 22px;

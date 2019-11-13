@@ -23,9 +23,12 @@ class PhotoIndex extends React.Component {
   }
 
   componentDidUpdate() {
-    window.addEventListener("scroll", e=> {
-      this.handleScroll(e)
-    })
+    window.addEventListener("scroll", this.handleScroll, false);
+  }
+
+  componentWillUnmount() {
+    console.log('unmounting')
+    window.removeEventListener("scroll", this.handleScroll, false);
   }
 
   handleScroll() {
@@ -48,7 +51,6 @@ class PhotoIndex extends React.Component {
     newState.loading = true;
     this.setState(newState)
   }
-
 
   render() {
     const favArray = {}

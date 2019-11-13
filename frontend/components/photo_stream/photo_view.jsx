@@ -10,27 +10,44 @@ class PhotoView extends React.Component {
       owner: this.props.owner,
       allPhotos: this.props.ownerPhotos,
       currentUser: this.props.currentUser,
-      photoId: parseInt(this.props.match.params.photo_id),
+      photoId: this.props.match.params.photo_id,
       ownerId: this.props.match.params.user_id,
       thisURL: "",
       nextIdx: "",
       prevIdx: "",
+      commentBody: "",
+      comments: [],
     }
+    this.props.getUser(this.state.ownerId);
+    this.props.getUserPhotos(this.state.ownerId);
+    this.submitComment = this.submitComment.bind(this);
+    this.props.getComments(this.state.photoId);
   }
 
   componentDidMount() {
-    this.props.getUserPhotos(this.state.ownerId);
-    this.props.getUser(this.state.ownerId);
+    this.setState({
+      comments: this.props.photoComments,
+    })
   }
 
-  getThisPhoto() {
+  typeComment() {
+    return (e) => {
+      this.setState({commentBody: e.target.value})
+    }
+  }
 
+  submitComment(e) {
+    e.preventDefault();
+    let commentData = new FormData;
+    commentData.append('user_id', this.state.currentUser.id);
+    commentData.append('photo_id', this.state.photoId);
+    commentData.append('comment', this.state.commentBody);
+    this.props.createComment(commentData);
   }
 
   render() {
-
-    const owner = this.state.owner;
     const allPhotos = this.props.ownerPhotos;
+    const comments = this.props.photoComments;
 
     const prevButton = Object.keys(allPhotos).map(idx => {
       if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
@@ -66,14 +83,18 @@ class PhotoView extends React.Component {
 
     const photoDisplay = Object.keys(allPhotos).map(idx => {
       if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
-        
+
         let imgStyle = {
           backgroundColor: '',
           minHeight: '706px',
         }
-        
+
         return (
-          <div style={imgStyle} key={idx}><div className="box"><img src={allPhotos[idx].image_url} /></div></div>
+          <div style={imgStyle} key={idx}>
+            <div className="box">
+              <img src={allPhotos[idx].image_url} />
+            </div>
+          </div>
         )
       }
     })
@@ -116,6 +137,46 @@ class PhotoView extends React.Component {
         )
     })
 
+    const commentList = Object.keys(comments).map(idx => {
+      let comment = comments[idx];
+      return (
+        <div className="photoview-comment-cell" key={comment.id}>
+          <div className="user-avatar"></div>
+          <div className="comment-body">
+            <Link to={`/users/${comment.user_id}/photos/`}>
+              <h3>{comment.commenter}</h3>
+            </Link>
+            <h4>{comment.comment}</h4>
+          </div>
+        </div>
+      )
+    })
+
+    const photoStats = Object.keys(allPhotos).map(idx => {
+      let photo;
+      if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
+        photo = allPhotos[idx]
+        return (
+          <div className="photo-stats" key={photo.id}>
+            <div className="photo-stats-cell">
+              <h3>{photo.num_views}</h3>
+              <h4>views</h4>
+            </div>
+            <div className="photo-stats-cell">
+              <h3>{photo.favorite_total}</h3>
+              <h4>faves</h4>
+            </div>
+            <div className="photo-stats-cell">
+              <h3>{photo.comment_total}</h3>
+              <h4>comments</h4>
+            </div>
+            <div className="photo-stats-cell">
+              <p>Uploaded On {photo.created_at.slice(0,10)}</p>
+              <h4>All rights reserved</h4>
+            </div>
+          </div>
+      )}
+    })
 
     return (
       <div className="photoview-wrapper">
@@ -141,14 +202,37 @@ class PhotoView extends React.Component {
           </div>
 
           <div className="photoview-form-container">
-            
             <div id="arrayBar">
               {photoArray}
             </div>
+          </div>
 
-            <div className="photoview-form-wrapper">
+          <div className="photoview-form-wrapper">
+            <div className="photoview-comment-field">
+              <div className="photoview-photo-desc">
               <div className="user-avatar"></div>
               {photoDesc}
+              </div>
+
+              {commentList}
+              
+              <form onSubmit={this.submitComment} id="commentForm">
+                <input 
+                  className="photoview-comment-textarea" 
+                  type="textarea"
+                  placeholder="Add a comment"
+                  onChange={this.typeComment()}>
+                </input>
+                <input
+                  className="photoview-comment-submit"
+                  type="submit"
+                  value="Comment">
+                </input>
+              </form>
+            </div>
+
+            <div className="photoview-info-field">
+              {photoStats}
             </div>
           </div>
 

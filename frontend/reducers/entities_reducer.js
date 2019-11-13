@@ -4,6 +4,7 @@ import PhotosReducer from './photos_reducer';
 import OwnersReducer from './owner_reducer';
 import OwnerPhotoReducer from './owner_photo_reducer';
 import FavoritesReducer from './favorites_reducer';
+import comments_reducer from './comments_reducer';
 
 const entitiesReducer = combineReducers({
   users: UsersReducer,
@@ -11,6 +12,7 @@ const entitiesReducer = combineReducers({
   photos: PhotosReducer,
   ownerPhotos: OwnerPhotoReducer,
   userFavorites: FavoritesReducer,
+  photoComments: comments_reducer,
 });
 
 export default entitiesReducer;

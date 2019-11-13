@@ -40,7 +40,8 @@ class PhotoCell extends React.Component {
     displayImage.src = photo.image_url;
     let rowSpan = (Math.ceil([displayImage.height * 480 / displayImage.width / 50]));
     let gridStyle = {
-      gridRowEnd: `span ${rowSpan}`,
+      gridRowEnd: `span 1`,
+      // gridRowEnd: `span ${rowSpan}`,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -70,14 +71,19 @@ class PhotoCell extends React.Component {
             <Link to={`/users/${photo.user_id}/photos/${photo.id}`}>{photo.title}</Link>
           </div>
           <div className="photoIndex-info-bot">
-            <p>{photo.favorite_total} Faves</p>
-            <p>{photo.num_views}</p>
-            <div className="favStar">
-              <FavButton 
-                fav={this.state.favorite} 
-                setFavorite={this.setFavorite}
-                removeFavorite={this.removeFavorite}
-                />
+            <div>
+              <p>{photo.favorite_total} Faves</p>
+              <p>{photo.comment_total} Comments</p>
+              <p>{photo.num_views} Views</p>
+            </div>
+            <div>
+              <div className="favStar">
+                <FavButton 
+                  fav={this.state.favorite} 
+                  setFavorite={this.setFavorite}
+                  removeFavorite={this.removeFavorite}
+                  />
+              </div>
             </div>
           </div>
         </div>

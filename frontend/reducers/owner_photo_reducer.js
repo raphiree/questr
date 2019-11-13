@@ -5,7 +5,7 @@ export default (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_USER_IMAGES:
-      return Object.assign({}, newState, action.photos);
+      return Object.assign({}, action.photos);
     default:
       return oldState;
   };

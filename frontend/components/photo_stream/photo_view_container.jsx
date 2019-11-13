@@ -2,6 +2,7 @@ import PhotoView from './photo_view';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/session_actions';
 import { getUser, getUserPhotos } from '../../actions/photo_actions';
+import { createComment, getComments } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
@@ -10,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     pageOwner: state.entities.owner.username,
     photoId: ownProps.match.params.photo_id,
     ownerId: ownProps.match.params.user_id,
+    photoComments: state.entities.photoComments,
   })
 }
 
@@ -18,6 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     logoutUser: user => dispatch(logoutUser(user)),
     getUser: id => dispatch(getUser(id)),
     getUserPhotos: id => dispatch(getUserPhotos(id)),
+    createComment: comment => dispatch(createComment(comment)),
+    getComments: comments => dispatch(getComments(comments)),
   }
 }
 

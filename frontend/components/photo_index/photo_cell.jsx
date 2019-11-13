@@ -20,6 +20,7 @@ class PhotoCell extends React.Component {
     this.props.favoritePhoto(favData)
     newState.favorite = true;
     this.setState(newState);
+    this.props.photo.favorite_total += 1;
   }
 
   removeFavorite() {
@@ -30,6 +31,7 @@ class PhotoCell extends React.Component {
     this.props.unfavoritePhoto(favData)
     newState.favorite = false;
     this.setState(newState);
+    this.props.photo.favorite_total -= 1;
   }
 
   render () {
@@ -68,6 +70,7 @@ class PhotoCell extends React.Component {
             <Link to={`/users/${photo.user_id}/photos/${photo.id}`}>{photo.title}</Link>
           </div>
           <div className="photoIndex-info-bot">
+            <p>{photo.favorite_total} Faves</p>
             <p>{photo.num_views}</p>
             <div className="favStar">
               <FavButton 

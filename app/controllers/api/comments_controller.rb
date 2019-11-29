@@ -3,7 +3,7 @@ class Api::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comm_params)
     if @comment.save
-      render "api/comments/index"
+      render @comment
     else
       render json: ['Invalid Comment']
     end

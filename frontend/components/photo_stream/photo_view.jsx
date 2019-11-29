@@ -22,6 +22,7 @@ class PhotoView extends React.Component {
     this.props.getUserPhotos(this.state.ownerId);
     this.submitComment = this.submitComment.bind(this);
     this.props.getComments(this.state.photoId);
+    this.clearComment = this.clearComment.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +44,12 @@ class PhotoView extends React.Component {
     commentData.append('photo_id', this.state.photoId);
     commentData.append('comment', this.state.commentBody);
     this.props.createComment(commentData);
+    this.clearComment();
+  }
+
+  clearComment() {
+    const textarea = document.getElementsByClassName('photoview-comment-textarea');
+    textarea[0].value = '';
   }
 
   render() {
@@ -237,8 +244,6 @@ class PhotoView extends React.Component {
           </div>
 
         </div>
-
-        {prevButton}
 
         <UserFooter />
 

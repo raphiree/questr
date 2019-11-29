@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/session_actions';
 import { getUser, getUserPhotos } from '../../actions/photo_actions';
 import { createComment, getComments } from '../../actions/comment_actions';
+import { favoritePhoto, unfavoritePhoto, getAllFavorites } from '../../actions/favorite_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     getUserPhotos: id => dispatch(getUserPhotos(id)),
     createComment: comment => dispatch(createComment(comment)),
     getComments: comments => dispatch(getComments(comments)),
+    
   }
 }
 

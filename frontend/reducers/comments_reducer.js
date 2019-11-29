@@ -5,7 +5,7 @@ export default (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_PHOTO_COMMENTS:
-      newState = Object.assign({}, newState, action.comments);
+      newState = Object.values(newState).concat(action.comments)
       return newState;
     default:
       return oldState;

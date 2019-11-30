@@ -23,7 +23,9 @@ const mapDispatchToProps = (dispatch) => {
     getUserPhotos: id => dispatch(getUserPhotos(id)),
     createComment: comment => dispatch(createComment(comment)),
     getComments: comments => dispatch(getComments(comments)),
-    
+    favoritePhoto: favData => dispatch(favoritePhoto(favData)),
+    unfavoritePhoto: favData => dispatch(unfavoritePhoto(favData)),
+    getAllFavorites: (user_id) => dispatch(getAllFavorites(user_id)),
   }
 }
 

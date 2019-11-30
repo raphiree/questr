@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import UserHeader from './user_header';
 import UserFooter from './user_footer';
+import FavButton from '../photo_index/photo_favs';
 
 class PhotoView extends React.Component {
   constructor(props) {
@@ -22,7 +23,10 @@ class PhotoView extends React.Component {
     this.props.getUserPhotos(this.state.ownerId);
     this.submitComment = this.submitComment.bind(this);
     this.props.getComments(this.state.photoId);
-    this.clearComment = this.clearComment.bind(this);
+    this.clearCommentbox = this.clearCommentbox.bind(this);
+    if (this.state.currentUser) {
+      this.props.getAllFavorites(this.state.currentUser.id);
+    }
   }
 
   componentDidMount() {
@@ -44,10 +48,10 @@ class PhotoView extends React.Component {
     commentData.append('photo_id', this.state.photoId);
     commentData.append('comment', this.state.commentBody);
     this.props.createComment(commentData);
-    this.clearComment();
+    this.clearCommentbox();
   }
 
-  clearComment() {
+  clearCommentbox() {
     const textarea = document.getElementsByClassName('photoview-comment-textarea');
     textarea[0].value = '';
   }

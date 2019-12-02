@@ -29,6 +29,13 @@ class PhotoView extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.photoId !== this.props.match.params.photo_id) {
+      this.setState({photoId: this.props.match.params.photo_id});
+      this.props.getComments(this.props.match.params.photo_id);
+    }
+  }
+
   componentDidMount() {
     this.setState({
       comments: this.props.photoComments,
@@ -45,7 +52,7 @@ class PhotoView extends React.Component {
     e.preventDefault();
     let commentData = new FormData;
     commentData.append('user_id', this.state.currentUser.id);
-    commentData.append('photo_id', this.state.photoId);
+    commentData.append('photo_id', this.props.match.params.photo_id);
     commentData.append('comment', this.state.commentBody);
     this.props.createComment(commentData);
     this.clearCommentbox();

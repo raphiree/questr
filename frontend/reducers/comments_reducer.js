@@ -8,6 +8,7 @@ export default (oldState = {}, action) => {
       newState = Object.values(newState).concat(action.comments)
       return newState;
     case RECEIVE_PHOTO_COMMENTS:
+      newState = action.comments;
       return newState;
     default:
       return oldState;

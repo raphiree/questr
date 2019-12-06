@@ -28,6 +28,7 @@ class PhotoView extends React.Component {
       this.props.getAllFavorites(this.state.currentUser.id);
     }
   }
+  
 
   componentDidUpdate() {
     if (this.state.photoId !== this.props.match.params.photo_id) {
@@ -251,6 +252,7 @@ class PhotoView extends React.Component {
 
             <div className="photoview-info-field">
               {photoStats}
+              <FavButton />
             </div>
           </div>
 

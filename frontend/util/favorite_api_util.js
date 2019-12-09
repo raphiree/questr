@@ -18,6 +18,9 @@ export const unfavoritePhoto = formData => {
     $.ajax({
       method: 'DELETE',
       url: `api/users/${user_id}/favorites/${id}`,
+      data: formData,
+      contentType: false,
+      processData: false,
     })
   )
 }

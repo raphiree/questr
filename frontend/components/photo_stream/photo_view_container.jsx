@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     photoId: ownProps.match.params.photo_id,
     ownerId: ownProps.match.params.user_id,
     photoComments: state.entities.photoComments,
+    userFavorites: state.entities.userFavorites,
   })
 }
 

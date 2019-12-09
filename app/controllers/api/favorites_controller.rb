@@ -16,12 +16,22 @@ class Api::FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = Favorite.find_by(id: params[:id])
-    if @favorite.delete
-      render "api/favorites/index"
+
+    if params[:user_id] && params[:photo_id]
+      @favorite = Favorite.where(user_id: params[:user_id]).where(photo_id: params[:photo_id])
+      if @favorite[0].delete
+        @favorites = Favorite.where(user_id: params[:user_id])
+        render "api/favorites/index"
+      end
     else
-      render json: ['Removal failed']
+      @favorite = Favorite.find_by(id: params[:id])
+      if @favorite.delete
+        render "api/favorites/index"
+      else
+        render json: ['Removal failed']
+      end
     end
+
   end
 
   private

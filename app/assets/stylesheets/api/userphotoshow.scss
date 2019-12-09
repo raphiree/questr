@@ -347,3 +347,16 @@
   color: #898989;
   font-size: 13px;
 }
+
+.photo-fav-block {
+  display: flex;
+}
+
+.photo-fav-block .photo-stats-cell {
+  padding-left: 10px;
+}
+
+.photo-fav-block .material-icons {
+  cursor: pointer;
+  padding-left: 10px;
+}

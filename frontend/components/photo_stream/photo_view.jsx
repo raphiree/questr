@@ -18,6 +18,10 @@ class PhotoView extends React.Component {
       prevIdx: "",
       commentBody: "",
       comments: [],
+      favorite: false,
+      favId: undefined,
+      thisPhoto: undefined,
+      favCount: 0,
     }
     this.props.getUser(this.state.ownerId);
     this.props.getUserPhotos(this.state.ownerId);
@@ -27,6 +31,9 @@ class PhotoView extends React.Component {
     if (this.state.currentUser) {
       this.props.getAllFavorites(this.state.currentUser.id);
     }
+    this.checkFavorite = this.checkFavorite.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
   
 
@@ -35,12 +42,37 @@ class PhotoView extends React.Component {
       this.setState({photoId: this.props.match.params.photo_id});
       this.props.getComments(this.props.match.params.photo_id);
     }
+    if (Object.keys(this.props.userFavorites).length > 0 && this.state.favorite !== true) {
+      this.checkFavorite();
+    }
   }
 
   componentDidMount() {
     this.setState({
       comments: this.props.photoComments,
     })
+  }
+
+  setFavorite() {
+    let favData = new FormData();
+    favData.append('user_id', this.props.currentUser.id);
+    favData.append('photo_id', this.props.match.params.photo_id);
+    this.props.favoritePhoto(favData)
+    this.setState({favorite: true});
+    let counter = document.getElementById('fav-counter');
+    counter.innerHTML = parseInt(counter.innerHTML) + 1;
+    this.checkFavorite();
+  }
+
+  removeFavorite() {
+    
+    let favData = new FormData();
+    favData.append('user_id', this.props.currentUser.id);
+    favData.append('photo_id', this.props.match.params.photo_id);
+    this.props.unfavoritePhoto(favData)
+    let counter = document.getElementById('fav-counter');
+    counter.innerHTML = parseInt(counter.innerHTML) - 1;
+    this.setState({favorite: false});
   }
 
   typeComment() {
@@ -62,6 +94,17 @@ class PhotoView extends React.Component {
   clearCommentbox() {
     const textarea = document.getElementsByClassName('photoview-comment-textarea');
     textarea[0].value = '';
+  }
+  
+  checkFavorite() {
+    Object.values(this.props.userFavorites).map(faves => {
+      if (faves.photo_id === parseInt(this.state.photoId)) {
+        this.setState({ 
+          favorite: true, 
+          favId: faves.id,
+        });
+      }
+    }, this)
   }
 
   render() {
@@ -174,16 +217,25 @@ class PhotoView extends React.Component {
     const photoStats = Object.keys(allPhotos).map(idx => {
       let photo;
       if (allPhotos[idx].id === parseInt(this.props.match.params.photo_id)) {
-        photo = allPhotos[idx]
+        photo = allPhotos[idx];
         return (
           <div className="photo-stats" key={photo.id}>
             <div className="photo-stats-cell">
               <h3>{photo.num_views}</h3>
               <h4>views</h4>
             </div>
-            <div className="photo-stats-cell">
-              <h3>{photo.favorite_total}</h3>
-              <h4>faves</h4>
+            <div className="photo-fav-block">
+              <FavButton
+                fav={this.state.favorite}
+                setFavorite={this.setFavorite}
+                removeFavorite={this.removeFavorite}
+              />
+              <div className="photo-stats-cell">
+                <h3 id="fav-counter">
+                  {photo.favorite_total}
+                </h3>
+                <h4>faves</h4>
+              </div>
             </div>
             <div className="photo-stats-cell">
               <h3>{photo.comment_total}</h3>
@@ -251,8 +303,7 @@ class PhotoView extends React.Component {
             </div>
 
             <div className="photoview-info-field">
-              {photoStats}
-              <FavButton />
+              {photoStats}   
             </div>
           </div>
 

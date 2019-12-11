@@ -67,3 +67,14 @@ export const getAPhoto = (user_id, photo_id) => {
     })
   )
 }
+
+export const addView = formData => {
+  const user_id = parseInt(formData.get('user_id'));
+  const photo_id = parseInt(formData.get('photo_id'));
+  return (
+    $.ajax({
+      method: 'PATCH',
+      url: `api/users/${user_id}/photos/${photo_id}`
+    })
+  )
+}

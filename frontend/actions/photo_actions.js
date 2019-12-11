@@ -5,6 +5,7 @@ export const RECEIVE_NEXT_PHOTOS = 'RECEIVE_NEXT_PHOTOS';
 export const RECEIVE_USER_IMAGES = 'RECEIVE_USER_IMAGES';
 export const RECEIVE_PAGE_OWNER = 'RECEIVE_PAGE_OWNER';
 export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
+export const RECEIVE_PHOTO_VIEW = 'RECEIVE_PHOTO_VIEW';
 
 const receiveUploadedImages = photos => {
   return ({

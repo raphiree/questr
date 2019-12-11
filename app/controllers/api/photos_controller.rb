@@ -34,6 +34,12 @@ class Api::PhotosController < ApplicationController
     end
   end
 
+  def update
+    @photo = Photo.find_by(id: params[:id])
+    @photo.num_views += 1
+    @photo.save
+  end
+
   private
 
   def photo_params

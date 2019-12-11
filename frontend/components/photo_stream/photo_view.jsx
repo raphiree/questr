@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import UserHeader from './user_header';
 import UserFooter from './user_footer';
 import FavButton from '../photo_index/photo_favs';
+import { addView } from '../../util/photo_api_util';
 
 class PhotoView extends React.Component {
   constructor(props) {
@@ -35,7 +36,6 @@ class PhotoView extends React.Component {
     this.setFavorite = this.setFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
   }
-  
 
   componentDidUpdate() {
     if (this.state.photoId !== this.props.match.params.photo_id) {
@@ -53,9 +53,17 @@ class PhotoView extends React.Component {
   }
 
   componentDidMount() {
+    this.updateViewcount();
     this.setState({
       comments: this.props.photoComments,
     })
+  }
+
+  updateViewcount() {
+    let viewData = new FormData();
+    viewData.append('user_id', this.props.match.params.user_id);
+    viewData.append('photo_id', this.props.match.params.photo_id);
+    addView(viewData);
   }
 
   setFavorite() {
@@ -223,7 +231,7 @@ class PhotoView extends React.Component {
         return (
           <div className="photo-stats" key={photo.id}>
             <div className="photo-stats-cell">
-              <h3>{photo.num_views}</h3>
+              <h3>{photo.num_views + 1}</h3>
               <h4>views</h4>
             </div>
             <div className="photo-fav-block">

@@ -27,7 +27,6 @@ class PhotoIndex extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('unmounting')
     window.removeEventListener("scroll", this.handleScroll, false);
   }
 

@@ -42,14 +42,7 @@ class PhotoView extends React.Component {
       this.setState({photoId: this.props.match.params.photo_id});
       this.props.getComments(this.props.match.params.photo_id);
     }
-    if (Object.keys(this.props.userFavorites).length > 0 && this.state.favorite !== true) {
-      if (this.checkFavorite()) {
-        this.setState({
-          favorite: true,
-          favId: faves.id,
-        });
-      }
-    }
+    this.checkFavorite();
   }
 
   componentDidMount() {
@@ -74,7 +67,6 @@ class PhotoView extends React.Component {
     this.setState({favorite: true});
     let counter = document.getElementById('fav-counter');
     counter.innerHTML = parseInt(counter.innerHTML) + 1;
-    this.checkFavorite();
   }
 
   removeFavorite() {
@@ -88,12 +80,15 @@ class PhotoView extends React.Component {
   }
 
   checkFavorite() {
+    let faveState = false;
     Object.values(this.props.userFavorites).map(faves => {
       if (faves.photo_id === parseInt(this.state.photoId)) {
-        return true;
+        faveState = true;
       }
     }, this)
-    return false;
+    if (this.state.favorite !== faveState) {
+      this.setState({favorite: faveState});
+    }
   }
 
   typeComment() {

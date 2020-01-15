@@ -78,7 +78,7 @@ class PhotoIndex extends React.Component {
     return (
       <>
         <UserHeader 
-          currentUser={this.state.currentUser} 
+          currentUser={this.props.currentUser} 
           logoutUser={this.props.logoutUser} />
         <div className="user-nav-bar2">
           <div className="photoIndex-nav">

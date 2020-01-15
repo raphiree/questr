@@ -243,7 +243,7 @@ class PhotoView extends React.Component {
               </div>
             </div>
             <div className="photo-stats-cell">
-              <h3>{photo.comment_total}</h3>
+              <h3 id="comment-count">{photo.comment_total}</h3>
               <h4>comments</h4>
             </div>
             <div className="photo-stats-cell">

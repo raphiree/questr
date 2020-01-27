@@ -22,7 +22,6 @@ class PhotoUpload extends React.Component {
 
   submitAllPhotos() {
     const currentState = this.state;
-    
     let countToBeUploaded = Array.from(currentState.titles).length;
     let uploaded = 0;
 
@@ -40,9 +39,9 @@ class PhotoUpload extends React.Component {
       imageData.append('user_id', this.props.currentUser.id);
       imageData.append('num_views', numView);
       imageData.append('image', this.state.files[idx].file);
-      this.props.uploadPhotos(imageData).then(() => { uploaded++ })
+      this.props.uploadPhotos(imageData).then(uploaded++)
     }
-    if (uploaded + 1 === countToBeUploaded) {
+    if (uploaded === countToBeUploaded) {
       this.props.history.push(`/users/${this.props.currentUser.id}/photos`)
     }
   }

@@ -101,9 +101,20 @@ handleFile(e) {
 ```
 The nested loop keeps the state's array index and array of files to be uploaded in independent order.
 
-## Known Issues
-1. Index page renders images before styling can be applied with onLoad
-2. Uploading images redirects before images have finished uploading, causing them to not appear on initial render
+## Upcoming Changes:
+1. Delete Photo by Uploader
+2. Delete Comment by Commenter
+3. Add album functionality to uploads
+4. Photo Stream should group by Albums
+5. User page should show Albums
+6. Add height/width columns to Photo during upload
+6. Update Photo description by Uploader
+7. Update Comment by Commenter
+
+
+## Known Issues:
+  After uploading a photo while looking at someone else's stream I seem to be seeing photos of other users as well. Again, after refreshing the page things go back to normal.
+  When looking at a user's stream and then looking at another's stream I still see photos of the previous user.
 
 ---
 

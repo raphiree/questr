@@ -11,6 +11,11 @@ class Photo < ApplicationRecord
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :User
+
+  belongs_to :album,
+    primary_key: :id,
+    foreign_key: :photo_id,
+    class_name: :Album
     
   has_many :comments,
     primary_key: :id,

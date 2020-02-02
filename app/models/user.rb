@@ -13,6 +13,11 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Photo
 
+  has_many :albums,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Album
+
   has_many :favorites,
     primary_key: :id,
     foreign_key: :user_id,

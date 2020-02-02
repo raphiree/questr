@@ -29,6 +29,7 @@ class PhotoView extends React.Component {
     this.submitComment = this.submitComment.bind(this);
     this.props.getComments(this.state.photoId);
     this.clearCommentbox = this.clearCommentbox.bind(this);
+    this.updateCommentCount = this.updateCommentCount.bind(this);
     if (this.state.currentUser) {
       this.props.getAllFavorites(this.state.currentUser.id);
     }
@@ -105,11 +106,17 @@ class PhotoView extends React.Component {
     commentData.append('comment', this.state.commentBody);
     this.props.createComment(commentData);
     this.clearCommentbox();
+    this.updateCommentCount();
   }
 
   clearCommentbox() {
     const textarea = document.getElementsByClassName('photoview-comment-textarea');
     textarea[0].value = '';
+  }
+
+  updateCommentCount() {
+    let counter = document.getElementById("comment-count");
+    counter.innerHTML = parseInt(counter.innerHTML) + 1
   }
 
   render() {

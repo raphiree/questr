@@ -40,6 +40,13 @@ class Api::PhotosController < ApplicationController
     @photo.save
   end
 
+  def destroy
+    @photo = Photo.find_by(id: params[:id])
+    if @photo.delete!
+      render json: ['Photo Deleted']
+    end
+  end
+
   private
 
   def photo_params

@@ -12,3 +12,5 @@ Upcoming Changes:
 Known Issues:
   After uploading a photo while looking at someone else's stream I seem to be seeing photos of other users as well. Again, after refreshing the page things go back to normal.
   When looking at a user's stream and then looking at another's stream I still see photos of the previous user.
+
+  Highlight Remove when a photo is selected for removal

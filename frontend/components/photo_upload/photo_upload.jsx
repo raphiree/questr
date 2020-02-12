@@ -39,13 +39,13 @@ class PhotoUpload extends React.Component {
       imageData.append('user_id', this.props.currentUser.id);
       imageData.append('num_views', numView);
       imageData.append('image', this.state.files[idx].file);
+      // imageData.append('albums', undefined);
       this.props.uploadPhotos(imageData).then(uploaded++)
     }
     if (uploaded === countToBeUploaded) {
       this.props.history.push(`/users/${this.props.currentUser.id}/photos`)
     }
   }
-
 
   handleFile(e) {
     let newState = this.state;
